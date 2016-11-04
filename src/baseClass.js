@@ -4,6 +4,7 @@ import ReactDom from 'react-dom'
 class CheckIfRender extends React.Component {
 	constructor(props) {
 		super(props)
+		console.log(props)
 		//initialize to an empty link to stop performing a new https request
 		this.state = {
 			link:''
