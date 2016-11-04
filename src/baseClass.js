@@ -11,6 +11,7 @@ class CheckIfRender extends React.Component {
 		}
 	}
 	listener() {
+		console.log('inside listener',this.props)
 		//check if the element is vertically visible
 		if(window.scrollY + window.innerWidth + this.props.offset > this.state.top) {
 			//if it's visible update the state with the link provided in the props
