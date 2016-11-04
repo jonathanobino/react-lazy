@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 
 class CheckIfRender extends React.Component {
 	constructor(props) {
@@ -25,7 +25,7 @@ class CheckIfRender extends React.Component {
 		window.removeEventListener('scroll',this.listener)
 	}
 	componentDidMount() {
-		const element = ReactDom.findDOMNode(this);
+		const element = ReactDOM.findDOMNode(this);
 		//the distance from the pixel 0,0 and the top of the element
 		const {top} = element.getBoundingClientRect();
 		this.setState({top})
