@@ -1,5 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+//import React from 'react'
+//import ReactDOM from 'react-dom'
+const React = require('react')
+const ReactDOM = require('react-dom')
 
 class CheckIfRender extends React.Component {
 	constructor(props) {
@@ -44,4 +46,4 @@ CheckIfRender.propTypes = {
 	link: React.PropTypes.string.isRequired
 }
 
-export default CheckIfRender
+module.exports = CheckIfRender

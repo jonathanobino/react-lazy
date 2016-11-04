@@ -1,7 +1,7 @@
-import React from 'react'
-import CheckIfRender from './baseClass'
+const React = require('react')
+const CheckIfRender = require('./baseClass')
 
-export default class LazyImage extends CheckIfRender {
+module.exports = class LazyImage extends CheckIfRender {
 	constructor(props) {
 		super(props)
 	}

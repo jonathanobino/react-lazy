@@ -1,5 +1,5 @@
-import React from 'react'
-import CheckIfRender from './baseClass'
+const React = require('react')
+const CheckIfRender = require('./baseClass')
 
 class LazyFrame extends CheckIfRender {
 	constructor(props) {
@@ -28,4 +28,4 @@ LazyFrame.defaultProps = {
 	}
 }
 
-export default LazyFrame
+module.exports = LazyFrame
