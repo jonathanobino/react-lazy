@@ -34,7 +34,11 @@ class CheckIfRender extends React.Component {
 }
 
 CheckIfRender.defaultProps = {
-	offset:100
+	offset: 100
+}
+
+CheckIfRender.propTypes = {
+	link: React.PropTypes.string.isRequired
 }
 
 export default CheckIfRender
