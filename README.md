@@ -21,6 +21,7 @@ The package exports 3 components:
 - LazyFrame
 
 Every component accept *offeset* as a prop.
+With every component only the link prop is required, every other prop has a fallback to a default prop.
 
 ###LazyBackgroundImage
 
@@ -46,13 +47,13 @@ It accepts 2 props:
 
 - height
 - scrolling
-- link: the 
+- link: the url of the resource
 - frameBorder
 - allowTransparency
 - allowFullScreen
 - style
 
-##Code
+##Example code
 
 ```javascript
 import {LazyBackgroundImage as Lazy} from 'react-lazy'
