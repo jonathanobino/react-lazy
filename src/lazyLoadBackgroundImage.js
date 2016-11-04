@@ -1,7 +1,7 @@
 import React from 'react'
 import CheckIfRender from './baseClass'
 
-export default class LazyBackgroundImage extends CheckIfRender {
+class LazyBackgroundImage extends CheckIfRender {
 	constructor(props) {
 		super(props)
 	}
@@ -9,3 +9,9 @@ export default class LazyBackgroundImage extends CheckIfRender {
 		return <div className={this.props.className} style={{backgroundImage:`url(${this.state.link})`}}></div>
 	}
 }
+
+LazyBackgroundImage.defaultProps = {
+	className:''
+}
+
+export default LazyBackgroundImage

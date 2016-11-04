@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-export default class CheckIfRender extends React.Component {
+class CheckIfRender extends React.Component {
 	constructor(props) {
 		super(props)
 		//initialize to an empty link to stop performing a new https request
@@ -11,7 +11,7 @@ export default class CheckIfRender extends React.Component {
 	}
 	listener() {
 		//check if the element is vertically visible
-		if(window.scrollY + window.innerWidth + 100 > this.state.top) {
+		if(window.scrollY + window.innerWidth + this.props.offset > this.state.top) {
 			//if it's visible update the state with the link provided in the props
 			this.setState({link:this.props.link})
 			//remove the event listener
@@ -32,3 +32,9 @@ export default class CheckIfRender extends React.Component {
 		this.removeListener()
 	}
 }
+
+CheckIfRender.defaultProps = {
+	offset:100
+}
+
+export default CheckIfRender
