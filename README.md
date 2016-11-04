@@ -9,7 +9,7 @@ Utility components to lazy load images, images-as-bacgkround and iframes.
 ##Demo
 
 You can see a demo of those packages working in my personal site.
-[Demo](https://jonathanobino.xyz)
+[Demo](http://jonathanobino.xyz)
 
 
 ##Usage
