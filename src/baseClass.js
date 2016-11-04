@@ -4,14 +4,15 @@ import ReactDom from 'react-dom'
 class CheckIfRender extends React.Component {
 	constructor(props) {
 		super(props)
-		console.log(props)
 		//initialize to an empty link to stop performing a new https request
 		this.state = {
 			link:''
 		}
+		//binding everything to 'this'
+		this.listener = this.listener.bind(this)
+		this.removeListener = this.removeListener.bind(this)
 	}
 	listener() {
-		console.log('inside listener',this.props)
 		//check if the element is vertically visible
 		if(window.scrollY + window.innerWidth + this.props.offset > this.state.top) {
 			//if it's visible update the state with the link provided in the props
