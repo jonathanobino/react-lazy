@@ -5,7 +5,7 @@ module.exports = {
     entry:'./src/index.js' ,
     devtool: 'source-map',
     output: {
-      library: 'lazy-react',
+      library: 'LazyReact',
       libraryTarget: 'umd',
       path: path.join(__dirname),
       filename: './dist/index.js'
