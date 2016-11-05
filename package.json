@@ -1,12 +1,12 @@
 {
   "name": "lazy-react",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "components to lazy load iframes, images and images as backgrounds",
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "demo":"webpack --config webpack.config.demo.js"
+    "demo": "webpack --config webpack.config.demo.js"
   },
   "keywords": [
     "react",
