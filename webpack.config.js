@@ -8,7 +8,7 @@ module.exports = {
       library: 'LazyReact',
       libraryTarget: 'umd',
       path: path.join(__dirname),
-      filename: './dist/index.js'
+      filename: './dist/browser.js'
     },
     externals: [{
       'react': {
