@@ -3,7 +3,7 @@ const LazyImage = require('./lazyLoadImage')
 const LazyFrame = require('./lazyLoadFrame')
 
 module.exports = {
-	LazyBackgroundImage,
-	LazyImage,
-	LazyFrame
+	LazyBackgroundImage:LazyBackgroundImage,
+	LazyImage:LazyImage,
+	LazyFrame:LazyFrame
 }
