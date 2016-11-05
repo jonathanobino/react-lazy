@@ -1,6 +1,6 @@
 {
   "name": "lazy-react",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "components to lazy load iframes, images and images as backgrounds",
   "main": "./index.js",
   "scripts": {
