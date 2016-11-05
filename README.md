@@ -1,16 +1,14 @@
-#react-lazy
+#lazy-react
 
 Utility components to lazy load images, images-as-bacgkround and iframes.
 
 ##Install
 
-`npm install --save react-lazy`
+`npm install --save lazy-react`
 
 ##Demo
 
-You can see a demo of those packages working in my personal site.
-[Demo](http://jonathanobino.xyz)
-
+You can see a demo of those packages in my [personal site](http://jonathanobino.xyz), cloning the repo and open the index.html in the demo folder or in this [codepen](http://codepen.io/jonathanobino/full/mOdXNb/).
 
 ##Usage
 
@@ -56,7 +54,7 @@ It accepts 2 props:
 ##Example code
 
 ```javascript
-import {LazyBackgroundImage as Lazy} from 'react-lazy'
+import {LazyBackgroundImage, LazyImage, LazyFrame} from 'react-lazy'
 
 class Example extents React.component {
 	constructor(props) {
@@ -64,9 +62,17 @@ class Example extents React.component {
 	}
 	render() {
 		return <div>
-			<Lazy 
-			link={'https://images.unsplash.com/photo-1471882108153-09c9b7452933?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=c63961fa4ff91dc2a8a85235a29c968c'}
-			offset={100}
+			<LazyBackgroundImage 
+				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
+				className="fill"
+			/>
+	    	<LazyImage 
+	    		link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
+	    		offset={100}
+			/>
+			<LazyFrame 
+				link={'http://jonathanobino.xyz'} 
+				scrolling={true}
 			/>
 		</div>
 	}
