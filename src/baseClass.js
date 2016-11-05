@@ -14,7 +14,7 @@ class CheckIfRender extends React.Component {
 	}
 	listener() {
 		//check if the element is vertically visible
-		if(window.scrollY + window.innerWidth + this.props.offset > this.state.top) {
+		if(window.scrollY + window.innerWidth + (this.props.offset || 100) > this.state.top) {
 			//if it's visible update the state with the link provided in the props
 			this.setState({link:this.props.link})
 			//remove the event listener
@@ -34,10 +34,6 @@ class CheckIfRender extends React.Component {
 	componentWillUnmount() {
 		this.removeListener()
 	}
-}
-
-CheckIfRender.defaultProps = {
-	offset: 100
 }
 
 CheckIfRender.propTypes = {

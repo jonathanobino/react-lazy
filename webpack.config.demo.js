@@ -2,29 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry:'./src/index.js' ,
-    devtool: 'source-map',
+    entry:'./demo/demo.js' ,
     output: {
-      library: 'LazyReact',
-      libraryTarget: 'umd',
       path: path.join(__dirname),
-      filename: './dist/index.js'
+      filename: './demo/index.js'
     },
-    externals: [{
-      'react': {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react'
-      }
-    }, {
-      'react-dom': {
-        root: 'ReactDOM',
-        commonjs2: 'react-dom',
-        commonjs: 'react-dom',
-        amd: 'react-dom'
-      }
-    }],
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {

@@ -5,9 +5,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:browser": "webpack",
-    "build:node": "babel src --out-dir dist",
-    "build": "npm run build:node && npm run build:browser"
+    "build": "webpack",
+    "demo":"webpack --config webpack.config.demo.js"
   },
   "keywords": [
     "react",
