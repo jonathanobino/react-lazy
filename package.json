@@ -5,8 +5,9 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "demo": "webpack --config webpack.config.demo.js"
+    "build:release": "webpack",
+    "build:demo": "webpack --config webpack.config.demo.js",
+    "build": "npm run build:release && npm run build:demo"
   },
   "keywords": [
     "react",
