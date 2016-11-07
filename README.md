@@ -1,10 +1,14 @@
 #lazy-react
 
-Utility components to lazy load images, images-as-bacgkround and iframes.
+Utility components to lazy load images, images-as-background and iframes.
 
 ##Install
 
-`npm install --save lazy-react`
+`npm install --save lazy-react`  
+
+Also available as umd on [unpkg](https://unpkg.com/) 
+
+`<script src="https://unpkg.com/lazy-react"></script>`
 
 ##Demo
 
@@ -18,43 +22,50 @@ The package exports 3 components:
 - LazyImage
 - LazyFrame
 
-Every component accept *offeset* as a prop.
-With every component only the link prop is required, every other prop has a fallback to a default prop.
+Every component accepts **offeset** as a prop, with 100px as fallback.
 
 ###LazyBackgroundImage
 
-###Props
+####Props
 
-It accepts 2 props:
-
-- className *optional*
-- link: the url of the resource
+Name | Type | Description | Optional | Default
+---|---| ---| ---| ---|
+link | String | the url of the resource | ❌
+className  | String | html class attribute | ✔️ | empty string
+style  | Object | html style attribute | ✔️ | {}
 
 ###LazyImage
 
-###Props
-
-It accepts 2 props:
-
-- alt
-- link: the url of the resource
+####Props
+Name | Type | Description | Optional | Default
+---|---| ---| ---| ---|
+link | String | the url of the resource | ❌
+alt  | String | same as html image alt attribute | ✔️ | empty string
+style  | Object | html style attribute | ✔️ | {}
 
 ###LazyFrame
 
-###Props
+####Props
 
-- height
-- scrolling
-- link: the url of the resource
-- frameBorder
-- allowTransparency
-- allowFullScreen
-- style
+Name | Type | Description | Optional | Default
+---|---| ---| ---| ---|
+link  | String | the url of the resource | ❌
+height  | String | same as html image alt attribute | ✔️ | 500px
+scrolling | String | same as html | ✔️ | 'no'
+frameBorder  | String | same as html | ✔️ | 'no'
+allowTransparency  | String | same as html | ✔️ | 'true'
+allowFullScreen  | String | same as html | ✔️ | 'true'
+style  | Object | html style attribute | ✔️ | {width:'100%'}
 
 ##Example code
 
 ```javascript
-import {LazyBackgroundImage, LazyImage, LazyFrame} from 'react-lazy'
+//with es6
+import {LazyBackgroundImage, LazyImage, LazyFrame} from 'lazy-react'
+//with es5
+var LazyBackgroundImage = require('lazy-react').LazyBackgroundImage
+var LazyImage = require('lazy-react').LazyImage
+var LazyFrame = require('lazy-react').LazyFrame
 
 class Example extents React.component {
 	constructor(props) {
@@ -66,9 +77,9 @@ class Example extents React.component {
 				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
 				className="fill"
 			/>
-	    	<LazyImage 
-	    		link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
-	    		offset={100}
+			<LazyImage 
+				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
+				offset={100}
 			/>
 			<LazyFrame 
 				link={'http://jonathanobino.xyz'} 
@@ -78,3 +89,7 @@ class Example extents React.component {
 	}
 }
 ```
+
+##Contributing
+
+Pull requests for bug fixes, new features, and improvements are welcomed.
