@@ -1,34 +1,42 @@
-const React = require('react')
-const ReactDOM = require('react-dom')
+import React,{Component,PropTypes} from 'react'
+import {findDOMNode} from 'react-dom'
 
-class CheckIfRender extends React.Component {
+class CheckIfRender extends Component {
 	constructor(props) {
 		super(props)
-		//initialize to an empty link to stop performing a new https request
+		//initialize to an empty link to stop loading the resource
 		this.state = {
 			link:''
 		}
 		//binding everything to 'this'
 		this.listener = this.listener.bind(this)
 		this.removeListener = this.removeListener.bind(this)
+		this.isInViewPort = this.isInViewPort.bind(this)
 	}
 	listener() {
 		//check if the element is vertically visible
-		if(window.scrollY + window.innerWidth + (this.props.offset || 100) > this.state.top) {
+		if(this.isInViewPort()) {
 			//if it's visible update the state with the link provided in the props
 			this.setState({link:this.props.link})
 			//remove the event listener
 			this.removeListener()
 		}
 	}
-	removeListener(){
+	isInViewPort() {
+		//checks if the element is in both orizzontal and vertial viewport
+		let offset = this.props.offset || 100
+		let verticalViewPort = window.scrollY + window.innerHeight + offset > this.state.top
+		let orizzontalViewPort = window.scrollX + window.innerWidth + offset > this.state.left
+		return verticalViewPort && orizzontalViewPort
+	}
+	removeListener() {
 		window.removeEventListener('scroll',this.listener)
 	}
 	componentDidMount() {
-		const element = ReactDOM.findDOMNode(this);
+		const element = findDOMNode(this);
 		//the distance from the pixel 0,0 and the top of the element
-		const {top} = element.getBoundingClientRect();
-		this.setState({top})
+		const {top,left} = element.getBoundingClientRect();
+		this.setState({top,left})
 		window.addEventListener('scroll',this.listener);
 	}
 	componentWillUnmount() {
@@ -37,7 +45,7 @@ class CheckIfRender extends React.Component {
 }
 
 CheckIfRender.propTypes = {
-	link: React.PropTypes.string.isRequired
+	link: PropTypes.string.isRequired
 }
 
-module.exports = CheckIfRender
+export default CheckIfRender

@@ -1,9 +1,9 @@
-const LazyBackgroundImage = require('./lazyLoadBackgroundImage')
-const LazyImage = require('./lazyLoadImage')
-const LazyFrame = require('./lazyLoadFrame')
+import LazyBackgroundImage from './lazyLoadBackgroundImage'
+import LazyImage from './lazyLoadImage'
+import LazyFrame from './lazyLoadFrame'
 
 module.exports = {
-	LazyBackgroundImage:LazyBackgroundImage,
-	LazyImage:LazyImage,
-	LazyFrame:LazyFrame
+	LazyBackgroundImage,
+	LazyImage,
+	LazyFrame
 }

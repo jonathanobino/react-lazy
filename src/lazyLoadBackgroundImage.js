@@ -1,5 +1,5 @@
-const React = require('react')
-const CheckIfRender = require('./baseClass')
+import React from 'react'
+import CheckIfRender from './baseClass'
 
 class LazyBackgroundImage extends CheckIfRender {
 	constructor(props) {
@@ -14,4 +14,4 @@ LazyBackgroundImage.defaultProps = {
 	className:''
 }
 
-module.exports =  LazyBackgroundImage
+export default   LazyBackgroundImage
