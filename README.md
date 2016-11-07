@@ -67,7 +67,7 @@ var LazyBackgroundImage = require('lazy-react').LazyBackgroundImage
 var LazyImage = require('lazy-react').LazyImage
 var LazyFrame = require('lazy-react').LazyFrame
 
-class Example extents React.component {
+class Example extends React.Component {
 	constructor(props) {
 		super(props)
 	}
