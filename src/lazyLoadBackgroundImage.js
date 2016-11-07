@@ -6,12 +6,16 @@ class LazyBackgroundImage extends CheckIfRender {
 		super(props)
 	}
 	render() {
-		return <div className={this.props.className} style={{backgroundImage:`url(${this.state.link})`}}></div>
+		let style = Object.assign({}, this.props.style, {
+			backgroundImage:`url(${this.state.link})`
+		})
+		return <div className={this.props.className} style={style}></div>
 	}
 }
 
 LazyBackgroundImage.defaultProps = {
-	className:''
+	className:'',
+	style:{}
 }
 
-export default   LazyBackgroundImage
+export default LazyBackgroundImage
