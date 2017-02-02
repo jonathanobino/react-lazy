@@ -32,7 +32,7 @@
             "never"
         ],
         "comma-spacing": [
-            "error", 
+            2, 
             { "before": false, "after": true }
         ]
     }
