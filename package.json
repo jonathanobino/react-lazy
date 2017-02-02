@@ -4,7 +4,6 @@
   "description": "components to lazy load iframes, images and images as backgrounds",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build:release": "webpack",
     "build:demo": "webpack --config webpack.config.demo.js",
     "build": "npm run build:release && npm run build:demo",
@@ -29,7 +28,7 @@
     "babel-preset-react": "^6.16.0",
     "eslint": "^3.14.1",
     "eslint-plugin-react": "^6.9.0",
-    "webpack": "^2.*.*"
+    "webpack": "^2.2.1"
   },
   "dependencies": {
     "react": "^15.4.2",

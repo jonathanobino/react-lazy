@@ -8,7 +8,7 @@ Utility components to lazy load images, images-as-background and iframes.
 
 `npm install --save lazy-react`  
 
-Also available as umd on [unpkg](https://unpkg.com/) 
+Also available as umd on [unpkg](https://unpkg.com/lazy-react) 
 
 `<script src="https://unpkg.com/lazy-react"></script>`
 
@@ -30,34 +30,37 @@ Every component accepts **offeset** as a prop, with 100px as fallback.
 
 ####Props
 
-Name | Type | Description | Optional | Default
+Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
-link | String | the url of the resource | ❌
-className  | String | html class attribute | ✔️ | empty string
-style  | Object | html style attribute | ✔️ | {}
+link | String | the url of the resource | ✔️
+className  | String | html class attribute |  | empty string
+style  | Object | html style attribute |  | {}
 
 ###LazyImage
 
 ####Props
-Name | Type | Description | Optional | Default
+Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
-link | String | the url of the resource | ❌
-alt  | String | same as html image alt attribute | ✔️ | empty string
-style  | Object | html style attribute | ✔️ | {}
+link | String | the url of the resource | ✔️
+alt  | String | same as html image alt attribute |  | empty string
+style  | Object | html style attribute |  | {}
+className  | String | html class attribute |  | empty string
+
+If no style.height has been provided, it will use 300px as fallback to calculate position.
 
 ###LazyFrame
 
 ####Props
 
-Name | Type | Description | Optional | Default
+Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
-link  | String | the url of the resource | ❌
-height  | String | same as html image alt attribute | ✔️ | 500px
-scrolling | String | same as html | ✔️ | 'no'
-frameBorder  | String | same as html | ✔️ | 'no'
-allowTransparency  | String | same as html | ✔️ | 'true'
-allowFullScreen  | String | same as html | ✔️ | 'true'
-style  | Object | html style attribute | ✔️ | {width:'100%'}
+link  | String | the url of the resource | ✔️
+height  | String | same as html image alt attribute |  | 500px
+scrolling | String | same as html |  | 'no'
+frameBorder  | String | same as html |  | 'no'
+allowTransparency  | String | same as html |  | 'true'
+allowFullScreen  | String | same as html |  | 'true'
+style  | Object | html style attribute |  | {width:'100%'}
 
 ##Example code
 
