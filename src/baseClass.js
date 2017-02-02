@@ -8,6 +8,15 @@ function isInViewPort({top, left, offset = 100}) {
 	return verticalViewPort && orizzontalViewPort
 }
 
+function calculateNewPosition(elem){
+	const reference = findDOMNode(elem.element)
+	const {top, left} = reference.getBoundingClientRect()
+	return Object.assign(elem, {
+		top,
+		left
+	})
+}
+
 class CheckIfRender extends Component {
 	constructor(props) {
 		super(props)
@@ -47,7 +56,7 @@ CheckIfRender.scrollHandler = function() {
 			}
 		}
 		if(savedIndexs.length > 0)
-			CheckIfRender.elements = CheckIfRender.elements.filter((elem, index) => !savedIndexs.includes(index))
+			CheckIfRender.elements = CheckIfRender.elements.filter((elem, index) => !savedIndexs.includes(index)).map(elem => calculateNewPosition(elem))
 	}
 }
 
