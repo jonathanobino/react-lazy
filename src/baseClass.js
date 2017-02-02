@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react'  // eslint-disable-line no-unused-vars
-import {findDOMNode} from 'react-dom'
 
 function isInViewPort({top, left, offset = 100}) {
 	//checks if the element is in both orizzontal and vertial viewport
