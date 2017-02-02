@@ -9,7 +9,7 @@ function isInViewPort({top, left, offset = 100}) {
 }
 
 function calculateNewPosition(elem){
-	const reference = findDOMNode(elem.element)
+	const reference = elem.element.domNode
 	const {top, left} = reference.getBoundingClientRect()
 	return Object.assign(elem, {
 		top,
@@ -31,7 +31,7 @@ class CheckIfRender extends Component {
 		this.setState({link:this.props.link})
 	}
 	componentDidMount() {
-		const element = findDOMNode(this)
+		const element = this.domNode
 		//the distance from the pixel 0,0 and the top of the element
 		const {top, left} = element.getBoundingClientRect()
 		CheckIfRender.elements.push({element:this, top, left, offset:this.props.offset})

@@ -10,7 +10,12 @@ class LazyBackgroundImage extends CheckIfRender {
 			backgroundImage:`url(${this.state.link})`
 		})
 		
-		return <div className={this.props.className} style={style}></div>
+		return <div 
+			className={this.props.className} 
+			style={style}
+			ref={(node)=>this.domNode = node}
+		>
+		</div>
 	}
 }
 

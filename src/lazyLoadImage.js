@@ -6,7 +6,14 @@ export default class LazyImage extends CheckIfRender {
 		super(props)
 	}
 	render(){
-		return <img src={this.state.link} alt={this.props.alt} style={this.style} className={this.props.className}></img>
+		return <img 
+			src={this.state.link} 
+			alt={this.props.alt} 
+			style={this.style} 
+			className={this.props.className} 
+			ref={(node)=>this.domNode = node}
+		>
+		</img>
 	}
 
 	componentWillMount() {

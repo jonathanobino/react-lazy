@@ -16,7 +16,9 @@ class LazyFrame extends CheckIfRender {
 			frameBorder={this.props.frameBorder}
 			allowTransparency={this.props.allowTransparency}
 			allowFullScreen={this.props.allowFullScreen}
-			style={style} >
+			style={style} 
+			ref={(node)=>this.domNode = node}
+		>
 		</iframe>
 	}
 }
