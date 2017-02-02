@@ -32,14 +32,12 @@ module.exports = {
         },
         __DEVELOPMENT__: false,
       }),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin(),
     ],
     module: {
-      loaders: [{
+      rules: [{
        test: /\.js$/,
-       loader: 'babel',
+       use: 'babel-loader',
        exclude: /node_modules/
      }
    ]
