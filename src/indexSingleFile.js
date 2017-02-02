@@ -1,6 +1,6 @@
 //this file it's here just for reference on how build size differs with webpack and babel when there is one or more files involved
 
-import React from 'react'
+import React from 'react'  // eslint-disable-line no-unused-vars
 import ReactDom from 'react-dom'
 
 class CheckIfRender extends React.Component {
@@ -17,13 +17,13 @@ class CheckIfRender extends React.Component {
 		}
 	}
 	removeListener(){
-		window.removeEventListener('scroll',this.listener)
+		window.removeEventListener('scroll', this.listener)
 	}
 	componentDidMount() {
-		const element = ReactDom.findDOMNode(this);
-		const {top} = element.getBoundingClientRect();
+		const element = ReactDom.findDOMNode(this)
+		const {top} = element.getBoundingClientRect()
 		this.setState({top})
-		window.addEventListener('scroll',this.listener);
+		window.addEventListener('scroll', this.listener)
 	}
 	componentWillUnmount() {
 		this.removeListener()

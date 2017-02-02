@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react'  // eslint-disable-line no-unused-vars
 import CheckIfRender from './baseClass'
 
 class LazyBackgroundImage extends CheckIfRender {
@@ -9,6 +9,7 @@ class LazyBackgroundImage extends CheckIfRender {
 		let style = Object.assign({}, this.props.style, {
 			backgroundImage:`url(${this.state.link})`
 		})
+		
 		return <div className={this.props.className} style={style}></div>
 	}
 }

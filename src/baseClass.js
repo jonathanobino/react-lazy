@@ -1,4 +1,4 @@
-import React,{Component,PropTypes} from 'react'
+import React, {Component, PropTypes} from 'react'  // eslint-disable-line no-unused-vars
 import {findDOMNode} from 'react-dom'
 
 class CheckIfRender extends Component {
@@ -30,14 +30,14 @@ class CheckIfRender extends Component {
 		return verticalViewPort && orizzontalViewPort
 	}
 	removeListener() {
-		window.removeEventListener('scroll',this.listener)
+		window.removeEventListener('scroll', this.listener)
 	}
 	componentDidMount() {
-		const element = findDOMNode(this);
+		const element = findDOMNode(this)
 		//the distance from the pixel 0,0 and the top of the element
-		const {top,left} = element.getBoundingClientRect();
-		this.setState({top,left})
-		window.addEventListener('scroll',this.listener);
+		const {top, left} = element.getBoundingClientRect()
+		this.setState({top, left})
+		window.addEventListener('scroll', this.listener)
 	}
 	componentWillUnmount() {
 		this.removeListener()

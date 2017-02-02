@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react'  // eslint-disable-line no-unused-vars
 import CheckIfRender from './baseClass'
 
 class LazyFrame extends CheckIfRender {
@@ -9,6 +9,7 @@ class LazyFrame extends CheckIfRender {
 		let style = Object.assign({}, {
 			width:'100%'
 		}, this.props.style)
+		
 		return <iframe height={this.props.height}
 			scrolling={this.props.scrolling}
 			src={this.state.link}
