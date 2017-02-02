@@ -12,6 +12,7 @@ export default class LazyImage extends CheckIfRender {
 				height:'300px'
 			})
 		}
+		
 		return <img src={this.state.link} alt={this.props.alt} style={this.props.style}></img>
 	}
 }
