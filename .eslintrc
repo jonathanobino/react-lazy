@@ -20,15 +20,15 @@
             "tab"
         ],
         "linebreak-style": [
-            "error",
+            2,
             "unix"
         ],
         "quotes": [
-            "error",
+            2,
             "single"
         ],
         "semi": [
-            "error",
+            2,
             "never"
         ],
         "comma-spacing": [
