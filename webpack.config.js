@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry:'./src/index.js' ,
+    entry:'./src/index.js',
     devtool: 'source-map',
     output: {
       library: 'LazyReact',

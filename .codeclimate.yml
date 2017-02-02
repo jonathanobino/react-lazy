@@ -1,0 +1,11 @@
+engines:
+  duplication:
+    enabled: false
+  eslint:
+    enabled: true
+    channel: "eslint-3"
+    config:
+      config: .eslintrc
+exclude_paths:
+  - dist/
+  - demo/
