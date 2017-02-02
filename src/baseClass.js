@@ -39,6 +39,9 @@ class CheckIfRender extends Component {
 			window.addEventListener('scroll', CheckIfRender.scrollHandler)
 		}
 	}
+	componentWillUnmount(){
+		CheckIfRender.removeElementFromList(this)
+	}
 }
 
 CheckIfRender.elements = []
@@ -61,6 +64,10 @@ CheckIfRender.scrollHandler = function() {
 
 CheckIfRender.removeScrollHandler = function() {
 	window.removeEventListener('scroll', CheckIfRender.scrollHandler)
+}
+
+CheckIfRender.removeElementFromList = function(toRemove){
+	CheckIfRender.elements = CheckIfRender.elements.filter(elem => elem.element!==toRemove)
 }
 
 CheckIfRender.isListenerAttached = false
