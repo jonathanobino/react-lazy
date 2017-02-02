@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/jonathanobino/react-lazy/badges/gpa.svg)](https://codeclimate.com/github/jonathanobino/react-lazy) [![Test Coverage](https://codeclimate.com/github/jonathanobino/react-lazy/badges/coverage.svg)](https://codeclimate.com/github/jonathanobino/react-lazy/coverage) [![Issue Count](https://codeclimate.com/github/jonathanobino/react-lazy/badges/issue_count.svg)](https://codeclimate.com/github/jonathanobino/react-lazy)
 
-Utility components to lazy load images, images-as-background and iframes.
+Utility components to lazy load images, images-as-background and iframes using just one scroll listener for all the elements.
 
 ##Install
 
