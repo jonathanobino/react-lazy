@@ -11,7 +11,7 @@ export default class LazyImage extends CheckIfRender {
 			alt={this.props.alt} 
 			style={this.style} 
 			className={this.props.className} 
-			ref={(node)=>this.domNode = node}
+			ref={(node) => this.domNode = node}
 		>
 		</img>
 	}

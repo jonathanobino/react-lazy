@@ -1,7 +1,7 @@
 import React from 'react'  // eslint-disable-line no-unused-vars
 import CheckIfRender from './baseClass'
 
-class LazyFrame extends CheckIfRender {
+export default class LazyFrame extends CheckIfRender {
 	constructor(props) {
 		super(props)
 	}
@@ -17,7 +17,7 @@ class LazyFrame extends CheckIfRender {
 			allowTransparency={this.props.allowTransparency}
 			allowFullScreen={this.props.allowFullScreen}
 			style={style} 
-			ref={(node)=>this.domNode = node}
+			ref={(node) => this.domNode = node}
 		>
 		</iframe>
 	}
@@ -30,5 +30,3 @@ LazyFrame.defaultProps = {
 	allowTransparency:'true',
 	allowFullScreen:'true'
 }
-
-export default  LazyFrame

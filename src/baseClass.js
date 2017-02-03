@@ -19,7 +19,7 @@ function calculateNewPosition(elem){
 class CheckIfRender extends Component {
 	constructor(props) {
 		super(props)
-		//initialize to an empty link to stop loading the resource
+		//initialize to an empty link to prevent loading the resource
 		this.state = {
 			link:'',
 			visible:false
