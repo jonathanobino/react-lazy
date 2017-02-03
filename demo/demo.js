@@ -1,8 +1,23 @@
-import React from 'react'
+import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {LazyImage, LazyBackgroundImage, LazyFrame} from '../dist'
+import {LazyImage, LazyBackgroundImage, LazyFrame, LazyComponent} from '../dist'
 
-class Demo extends React.Component {
+
+class Experimental extends Component {
+	constructor(props){
+		super(props)
+	}
+
+	componentDidMount(){
+		console.log('now I\'m loaded')
+	}
+
+	render(){
+		return <h1> I'm lazy loaded !</h1>
+	}
+}
+
+class Demo extends Component {
 	constructor(props) {
 		super(props)
 	}
@@ -44,6 +59,13 @@ class Demo extends React.Component {
 	    	className="fill"
 	    	// style={style}
 	    />
+
+	    <LazyComponent>
+	    	<Experimental/>
+	    	<Experimental/>
+	    	<Experimental/>
+	    </LazyComponent>
+
 	    <LazyFrame 
 	    	link={'http://jonathanobino.xyz'} 
 	    	scrolling={true}
