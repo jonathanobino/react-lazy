@@ -21,13 +21,17 @@ class CheckIfRender extends Component {
 		super(props)
 		//initialize to an empty link to stop loading the resource
 		this.state = {
-			link:''
+			link:'',
+			visible:false
 		}
 		//binding everything to 'this'
 		this.makeItVisible = this.makeItVisible.bind(this)
 	}
 	makeItVisible() {
-		this.setState({link:this.props.link})
+		this.setState({
+			link:this.props.link,
+			visible:true
+		})
 	}
 	componentDidMount() {
 		const element = this.domNode
