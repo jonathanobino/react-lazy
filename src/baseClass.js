@@ -37,8 +37,6 @@ CheckIfRender.elements = []
 
 CheckIfRender.eventHandler = function() {
 
-	console.log('animationFrameRequested')
-
 	if(CheckIfRender.elements.length === 0) {
 		CheckIfRender.removeScrollHandler()
 	} else {
