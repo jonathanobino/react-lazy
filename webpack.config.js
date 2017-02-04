@@ -32,7 +32,7 @@ module.exports = {
 			},
 			__DEVELOPMENT__: false,
 		}),
-		new webpack.optimize.UglifyJsPlugin()
+		new webpack.optimize.UglifyJsPlugin({comments: false })
 	],
 	module: {
 		rules: [{
