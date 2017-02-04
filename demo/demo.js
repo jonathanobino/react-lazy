@@ -32,11 +32,15 @@ class Demo extends React.Component {
 	    <LazyImage 
 	      link={'https://images.unsplash.com/photo-1469899324414-c72bfb4d4161?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=8d708d646e3b2d32c5faf67e01919872'} 
 				offset={100}
+				className={'test'}
+				preserveAspect={false}
 				// style={style}
 	    />
 	    <LazyImage 
 	      link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
 				offset={100}
+				className={'test'}
+				preserveAspect={false}
 				// style={style}
 	    />
 	    <LazyBackgroundImage 

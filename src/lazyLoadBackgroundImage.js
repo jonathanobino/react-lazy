@@ -15,8 +15,6 @@ class LazyBackgroundImage extends CheckIfRender {
 	}
 	componentWillMount() {
 		this.style = {
-			minHeight:'300px',
-			minWidth:'100%',
 			backgroundImage:`url(${this.state.link})`,
 			...this.props.style}
 	}

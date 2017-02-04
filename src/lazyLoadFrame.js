@@ -20,7 +20,6 @@ class LazyFrame extends CheckIfRender {
 	}
 	componentWillMount() {
 		this.style = {
-			minHeight:'300px',
 			minWidth:'100%',
 			...this.props.style
 		}

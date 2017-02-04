@@ -45,8 +45,10 @@ link | String | the url of the resource | ✔️
 alt  | String | same as html image alt attribute |  | empty string
 style  | Object | html style attribute |  | {}
 className  | String | html class attribute |  | empty string
+preserveAspect | Boolean | If false it try to calculate width and height, it can break the layout | true | | true
 
 If no style.height has been provided, it will use 300px as fallback to calculate position.
+'preserveAspect' was added in 2.0.1 to prevent the component to apply style to the elements that doesn't have a class but are styled with nested selectors.
 
 ###LazyFrame
 
