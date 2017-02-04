@@ -1,7 +1,7 @@
 import React from 'react'  // eslint-disable-line no-unused-vars
 import CheckIfRender from './baseClass'
 
-export default class LazyImage extends CheckIfRender {
+class LazyImage extends CheckIfRender {
 	constructor(props) {
 		super(props)
 	}
@@ -15,11 +15,12 @@ export default class LazyImage extends CheckIfRender {
 		>
 		</img>
 	}
-
 	componentWillMount() {
-		this.style = Object.assign({}, this.props.style)
-		if(!this.state.link && !this.props.className && !this.style.height)
-			this.style.height = '300px'
+		this.style = {
+			minHeight:'300px',
+			minWidth:'300px',
+			...this.props.style
+		}
 	}
 }
 
@@ -27,3 +28,5 @@ LazyImage.defaultProps = {
 	style: {},
 	className: ''
 }
+
+export default LazyImage
