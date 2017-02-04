@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/lazy-react.svg)](https://badge.fury.io/js/lazy-react) [![Code Climate](https://codeclimate.com/github/jonathanobino/react-lazy/badges/gpa.svg)](https://codeclimate.com/github/jonathanobino/react-lazy) [![Issue Count](https://codeclimate.com/github/jonathanobino/react-lazy/badges/issue_count.svg)](https://codeclimate.com/github/jonathanobino/react-lazy)
 
-Utility components to lazy load images, images-as-background and iframes using just one scroll listener for all the elements.
+Utility components to lazy load images, images-as-background and iframes using only requestAnimationFrame to handle scroll (both vertical and orizzontal) and window resize.
 
 ##Install
 
