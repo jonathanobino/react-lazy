@@ -1,52 +1,44 @@
 import React, {Component, PropTypes} from 'react'  // eslint-disable-line no-unused-vars
 
-function isInViewPort({top, left, offset = 100}) {
-	//checks if the element is in both orizzontal and vertial viewport
-	let verticalViewPort = window.scrollY + window.innerHeight + offset > top
-	let orizzontalViewPort = window.scrollX + window.innerWidth + offset > left
-	return verticalViewPort && orizzontalViewPort
-}
+const isInViewPort = ({offset, top, left}) => window.scrollY + window.innerHeight + offset > top 
+	&& window.scrollX + window.innerWidth + offset > left 
 
-function calculateNewPosition(elem){
+const calculateNewPosition = (elem) => {
 	const reference = elem.element.domNode
-	const {top, left} = reference.getBoundingClientRect()
-	return Object.assign(elem, {
+	const {top, left, right} = reference.getBoundingClientRect()
+	return {
+		...elem,
 		top,
-		left
-	})
+		left,
+		right
+	}
 }
 
 class CheckIfRender extends Component {
 	constructor(props) {
 		super(props)
-		//initialize to an empty link to stop loading the resource
 		this.state = {
 			link:''
 		}
-		//binding everything to 'this'
 		this.makeItVisible = this.makeItVisible.bind(this)
 	}
 	makeItVisible() {
 		this.setState({link:this.props.link})
 	}
 	componentDidMount() {
-		const element = this.domNode
-		//the distance from the pixel 0,0 and the top of the element
-		const {top, left} = element.getBoundingClientRect()
-		CheckIfRender.elements.push({element:this, top, left, offset:this.props.offset})
-		if(!CheckIfRender.isListenerAttached) {
-			CheckIfRender.isListenerAttached = true
-			window.addEventListener('scroll', CheckIfRender.scrollHandler)
-		}
+		CheckIfRender.addElement(this)
 	}
-	componentWillUnmount(){
+	componentWillUnmount() {
 		CheckIfRender.removeElementFromList(this)
 	}
 }
 
 CheckIfRender.elements = []
 
-CheckIfRender.scrollHandler = function() {
+CheckIfRender.eventHandler = function() {
+
+	console.log('animationFrameRequested')
+
 	if(CheckIfRender.elements.length === 0) {
 		CheckIfRender.removeScrollHandler()
 	} else {
@@ -58,22 +50,42 @@ CheckIfRender.scrollHandler = function() {
 			}
 		}
 		if(savedIndexs.length > 0)
-			CheckIfRender.elements = CheckIfRender.elements.filter((elem, index) => !savedIndexs.includes(index)).map(elem => calculateNewPosition(elem))
+			CheckIfRender.elements = CheckIfRender.elements.filter((elem, index) => !savedIndexs.includes(index))
+		CheckIfRender.elements = CheckIfRender.elements.map(elem => calculateNewPosition(elem))
+		CheckIfRender.isListenerAttached = window.requestAnimationFrame(CheckIfRender.eventHandler)
+	}
+}
+
+CheckIfRender.addElement = function(element) {
+	//the distance from the pixel 0,0 and the top of the element
+	const {top, left, right} = element.domNode.getBoundingClientRect()
+	//move element to just domNode reference
+	CheckIfRender.elements.push({
+		element,
+		top,
+		left,
+		right,
+		offset:element.props.offset || 100
+	})
+	if(typeof CheckIfRender.isListenerAttached !== 'function') {
+		CheckIfRender.isListenerAttached = window.requestAnimationFrame(CheckIfRender.eventHandler)
 	}
 }
 
 CheckIfRender.removeScrollHandler = function() {
-	window.removeEventListener('scroll', CheckIfRender.scrollHandler)
+	window.cancelAnimationFrame(CheckIfRender.isListenerAttached)
 }
 
-CheckIfRender.removeElementFromList = function(toRemove){
-	CheckIfRender.elements = CheckIfRender.elements.filter(elem => elem.element!==toRemove)
+CheckIfRender.removeElementFromList = function(toRemove) {
+	CheckIfRender.elements = CheckIfRender.elements.filter(elem => elem.element !== toRemove)
 }
 
 CheckIfRender.isListenerAttached = false
 
-CheckIfRender.propTypes = {
-	link: PropTypes.string.isRequired
+if(!process.NODE_ENV === 'production') {
+	CheckIfRender.propTypes = {
+		link: PropTypes.string.isRequired
+	}
 }
 
 export default CheckIfRender
