@@ -16,7 +16,7 @@ class LazyImage extends CheckIfRender {
 		</img>
 	}
 	componentWillMount() {
-		if(this.props.className === '' || this.props.preserveAspect === false) {
+		if(this.props.className === '' && this.props.preserveAspect === false) {
 			this.style = {
 				minHeight:'300px',
 				minWidth:'300px',
