@@ -6,20 +6,23 @@ export default class LazyFrame extends CheckIfRender {
 		super(props)
 	}
 	render() {
-		let style = Object.assign({}, {
-			width:'100%'
-		}, this.props.style)
-		
+
 		return <iframe height={this.props.height}
 			scrolling={this.props.scrolling}
 			src={this.state.link}
 			frameBorder={this.props.frameBorder}
 			allowTransparency={this.props.allowTransparency}
 			allowFullScreen={this.props.allowFullScreen}
-			style={style} 
-			ref={(node) => this.domNode = node}
+			style={this.style} 
+			ref={(node)=>this.domNode = node}
 		>
 		</iframe>
+	}
+	componentWillMount() {
+		this.style = {
+			minWidth:'100%',
+			...this.props.style
+		}
 	}
 }
 
@@ -30,3 +33,5 @@ LazyFrame.defaultProps = {
 	allowTransparency:'true',
 	allowFullScreen:'true'
 }
+
+export default LazyFrame

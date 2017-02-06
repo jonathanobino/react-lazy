@@ -15,15 +15,20 @@ export default class LazyImage extends CheckIfRender {
 		>
 		</img>
 	}
-
 	componentWillMount() {
-		this.style = Object.assign({}, this.props.style)
-		if(!this.state.link && !this.props.className && !this.style.height)
-			this.style.height = '300px'
+		if(this.props.className === '' && this.props.preserveAspect === false) {
+			this.style = {
+				minHeight:'300px',
+				minWidth:'300px',
+				...this.props.style
+			}
+		}
 	}
 }
 
 LazyImage.defaultProps = {
 	style: {},
-	className: ''
+	className: '',
+	preserveAspect: true
 }
+

@@ -1,19 +1,17 @@
 import React, {Component, PropTypes} from 'react'  // eslint-disable-line no-unused-vars
 
-function isInViewPort({top, left, offset = 100}) {
-	//checks if the element is in both orizzontal and vertial viewport
-	let verticalViewPort = window.scrollY + window.innerHeight + offset > top
-	let orizzontalViewPort = window.scrollX + window.innerWidth + offset > left
-	return verticalViewPort && orizzontalViewPort
-}
+const isInViewPort = ({offset, top, left}) => window.scrollY + window.innerHeight + offset > top 
+	&& window.scrollX + window.innerWidth + offset > left 
 
-function calculateNewPosition(elem){
+const calculateNewPosition = (elem) => {
 	const reference = elem.element.domNode
-	const {top, left} = reference.getBoundingClientRect()
-	return Object.assign(elem, {
+	const {top, left, right} = reference.getBoundingClientRect()
+	return {
+		...elem,
 		top,
-		left
-	})
+		left,
+		right
+	}
 }
 
 class CheckIfRender extends Component {
@@ -24,7 +22,6 @@ class CheckIfRender extends Component {
 			link:'',
 			visible:false
 		}
-		//binding everything to 'this'
 		this.makeItVisible = this.makeItVisible.bind(this)
 	}
 	makeItVisible() {
@@ -34,50 +31,69 @@ class CheckIfRender extends Component {
 		})
 	}
 	componentDidMount() {
-		const element = this.domNode
-		//the distance from the pixel 0,0 and the top of the element
-		const {top, left} = element.getBoundingClientRect()
-		CheckIfRender.elements.push({element:this, top, left, offset:this.props.offset})
-		if(!CheckIfRender.isListenerAttached) {
-			CheckIfRender.isListenerAttached = true
-			window.addEventListener('scroll', CheckIfRender.scrollHandler)
-		}
+		CheckIfRender.addElement(this)
 	}
-	componentWillUnmount(){
+	componentWillUnmount() {
 		CheckIfRender.removeElementFromList(this)
 	}
 }
 
 CheckIfRender.elements = []
 
-CheckIfRender.scrollHandler = function() {
+CheckIfRender.eventHandler = function() {
+	//if there is no more element to lazy load just remove the listeners/rAF
 	if(CheckIfRender.elements.length === 0) {
 		CheckIfRender.removeScrollHandler()
 	} else {
+		//save every index of elements that has been loaded
 		let savedIndexs = []
 		for(let i = 0; i < CheckIfRender.elements.length ; i++) {
 			if(isInViewPort(CheckIfRender.elements[i])){
-				CheckIfRender.elements[i].element.makeItVisible()
 				savedIndexs.push(i)
+				//make the element visible
+				CheckIfRender.elements[i].element.makeItVisible()
 			}
 		}
+		//remove elements that has already been loaded from the list of the elements
 		if(savedIndexs.length > 0)
-			CheckIfRender.elements = CheckIfRender.elements.filter((elem, index) => !savedIndexs.includes(index)).map(elem => calculateNewPosition(elem))
+			CheckIfRender.elements = CheckIfRender.elements.filter((elem, index) => !savedIndexs.includes(index))
+		//update the coordinates of the elements
+		CheckIfRender.elements = CheckIfRender.elements.map(elem => calculateNewPosition(elem))
+		CheckIfRender.isListenerAttached = window.requestAnimationFrame(CheckIfRender.eventHandler)
+	}
+}
+
+CheckIfRender.addElement = function(element) {
+	//the distance from the pixel 0,0 and the top of the element
+	const {top, left, right} = element.domNode.getBoundingClientRect()
+	CheckIfRender.elements.push({
+		element,
+		top,
+		left,
+		right,
+		offset:element.props.offset || 100
+	})
+	//check if has already been started the rAF cycle
+	if(typeof CheckIfRender.isListenerAttached !== 'function') {
+		CheckIfRender.isListenerAttached = window.requestAnimationFrame(CheckIfRender.eventHandler)
 	}
 }
 
 CheckIfRender.removeScrollHandler = function() {
-	window.removeEventListener('scroll', CheckIfRender.scrollHandler)
+	window.cancelAnimationFrame(CheckIfRender.isListenerAttached)
 }
 
-CheckIfRender.removeElementFromList = function(toRemove){
-	CheckIfRender.elements = CheckIfRender.elements.filter(elem => elem.element!==toRemove)
+//When an element is unloaded remove it from the list of elements that are waiting to be lazy-loaded
+CheckIfRender.removeElementFromList = function(toRemove) {
+	CheckIfRender.elements = CheckIfRender.elements.filter(elem => elem.element !== toRemove)
 }
 
 CheckIfRender.isListenerAttached = false
 
-CheckIfRender.propTypes = {
-	link: PropTypes.string.isRequired
+if(!process.NODE_ENV === 'production') {
+	CheckIfRender.propTypes = {
+		link: PropTypes.string.isRequired
+	}
 }
 
 export default CheckIfRender
