@@ -36,19 +36,23 @@ class CheckIfRender extends Component {
 CheckIfRender.elements = []
 
 CheckIfRender.eventHandler = function() {
-
+	//if there is no more element to lazy load just remove the listeners/rAF
 	if(CheckIfRender.elements.length === 0) {
 		CheckIfRender.removeScrollHandler()
 	} else {
+		//save every index of elements that has been loaded
 		let savedIndexs = []
 		for(let i = 0; i < CheckIfRender.elements.length ; i++) {
 			if(isInViewPort(CheckIfRender.elements[i])){
-				CheckIfRender.elements[i].element.makeItVisible()
 				savedIndexs.push(i)
+				//make the element visible
+				CheckIfRender.elements[i].element.makeItVisible()
 			}
 		}
+		//remove elements that has already been loaded from the list of the elements
 		if(savedIndexs.length > 0)
 			CheckIfRender.elements = CheckIfRender.elements.filter((elem, index) => !savedIndexs.includes(index))
+		//update the coordinates of the elements
 		CheckIfRender.elements = CheckIfRender.elements.map(elem => calculateNewPosition(elem))
 		CheckIfRender.isListenerAttached = window.requestAnimationFrame(CheckIfRender.eventHandler)
 	}
@@ -57,7 +61,6 @@ CheckIfRender.eventHandler = function() {
 CheckIfRender.addElement = function(element) {
 	//the distance from the pixel 0,0 and the top of the element
 	const {top, left, right} = element.domNode.getBoundingClientRect()
-	//move element to just domNode reference
 	CheckIfRender.elements.push({
 		element,
 		top,
@@ -65,6 +68,7 @@ CheckIfRender.addElement = function(element) {
 		right,
 		offset:element.props.offset || 100
 	})
+	//check if has already been started the rAF cycle
 	if(typeof CheckIfRender.isListenerAttached !== 'function') {
 		CheckIfRender.isListenerAttached = window.requestAnimationFrame(CheckIfRender.eventHandler)
 	}
@@ -74,6 +78,7 @@ CheckIfRender.removeScrollHandler = function() {
 	window.cancelAnimationFrame(CheckIfRender.isListenerAttached)
 }
 
+//When an element is unloaded remove it from the list of elements that are waiting to be lazy-loaded
 CheckIfRender.removeElementFromList = function(toRemove) {
 	CheckIfRender.elements = CheckIfRender.elements.filter(elem => elem.element !== toRemove)
 }
