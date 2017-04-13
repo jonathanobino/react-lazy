@@ -1,7 +1,7 @@
 import React from 'react'  // eslint-disable-line no-unused-vars
 import CheckIfRender from './baseClass'
 
-class LazyFrame extends CheckIfRender {
+export default class LazyFrame extends CheckIfRender {
 	constructor(props) {
 		super(props)
 	}
@@ -33,5 +33,3 @@ LazyFrame.defaultProps = {
 	allowTransparency:'true',
 	allowFullScreen:'true'
 }
-
-export default LazyFrame
