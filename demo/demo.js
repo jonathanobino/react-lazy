@@ -28,6 +28,11 @@ class Demo extends Component {
 		}
 	 return <div>
 	   <h2>Just scroll</h2>
+	   <div	style={{
+	   	minHeight:'100vh',
+	   	minWidth:'100vw',
+	   	backgroundColor:'tomato'
+	   }}></div>
 	    <LazyImage 
 	      link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
 	      offset={0}

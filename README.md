@@ -36,6 +36,15 @@ link | String | the url of the resource | ✔️
 className  | String | html class attribute |  | empty string
 style  | Object | html style attribute |  | {}
 
+###LazyComponent
+
+####Props
+
+Name | Type | Description | Required | Default
+---|---| ---| ---| ---|
+className  | String | html class attribute |  | empty string
+style  | Object | html style attribute |  | {}
+
 ###LazyImage
 
 ####Props
