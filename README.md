@@ -1,10 +1,10 @@
-#lazy-react
+# lazy-react
 
 [![npm version](https://badge.fury.io/js/lazy-react.svg)](https://badge.fury.io/js/lazy-react) [![Code Climate](https://codeclimate.com/github/jonathanobino/react-lazy/badges/gpa.svg)](https://codeclimate.com/github/jonathanobino/react-lazy) [![Issue Count](https://codeclimate.com/github/jonathanobino/react-lazy/badges/issue_count.svg)](https://codeclimate.com/github/jonathanobino/react-lazy)
 
 Utility components to lazy load images, images-as-background and iframes using only requestAnimationFrame to handle scroll (both vertical and orizzontal) and window resize.
 
-##Install
+## Install
 
 `npm install --save lazy-react`  
 
@@ -12,11 +12,11 @@ Also available as umd on [unpkg](https://unpkg.com/lazy-react)
 
 `<script src="https://unpkg.com/lazy-react"></script>`
 
-##Demo
+## Demo
 
 You can see a demo of those packages in my [personal site](http://jonathanobino.xyz), cloning the repo and open the index.html in the demo folder or in this [codepen](http://codepen.io/jonathanobino/full/mOdXNb/).
 
-##Usage
+## Usage
 
 The package exports 3 components:
 
@@ -26,9 +26,9 @@ The package exports 3 components:
 
 Every component accepts **offeset** as a prop, with 100px as fallback.
 
-###LazyBackgroundImage
+### LazyBackgroundImage
 
-####Props
+#### Props
 
 Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
@@ -36,18 +36,18 @@ link | String | the url of the resource | ✔️
 className  | String | html class attribute |  | empty string
 style  | Object | html style attribute |  | {}
 
-###LazyComponent
+### LazyComponent
 
-####Props
+#### Props
 
 Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
 className  | String | html class attribute |  | empty string
 style  | Object | html style attribute |  | {} |
 
-###LazyImage
+### LazyImage
 
-####Props
+#### Props
 
 Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
@@ -60,9 +60,9 @@ preserveAspect | Boolean | If false it try to calculate width and height, it can
 If no style.height has been provided, it will use 300px as fallback to calculate position.
 'preserveAspect' was added in 2.0.1 to prevent the component to apply style to the elements that doesn't have a class but are styled with nested selectors.
 
-###LazyFrame
+### LazyFrame
 
-####Props
+#### Props
 
 Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
@@ -74,7 +74,7 @@ allowTransparency  | String | same as html |  | 'true'
 allowFullScreen  | String | same as html |  | 'true'
 style  | Object | html style attribute |  | {width:'100%'}
 
-##Example code
+## Example code
 
 ```javascript
 //with es6
@@ -107,6 +107,6 @@ class Example extends React.Component {
 }
 ```
 
-##Contributing
+## Contributing
 
 Pull requests for bug fixes, new features, and improvements are welcomed.
