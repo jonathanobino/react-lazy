@@ -9,8 +9,7 @@
     "build": "npm run build:release && npm run build:demo",
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
-    "precommit": "lint-staged",
-    "prettify": "prettier --write  --single-quote --no-semi ./src/*.js"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": [
