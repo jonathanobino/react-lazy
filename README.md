@@ -1,6 +1,7 @@
 # lazy-react
 
-[![npm version](https://badge.fury.io/js/lazy-react.svg)](https://badge.fury.io/js/lazy-react) [![Code Climate](https://codeclimate.com/github/jonathanobino/react-lazy/badges/gpa.svg)](https://codeclimate.com/github/jonathanobino/react-lazy) [![Issue Count](https://codeclimate.com/github/jonathanobino/react-lazy/badges/issue_count.svg)](https://codeclimate.com/github/jonathanobino/react-lazy)
+[![npm version](https://badge.fury.io/js/lazy-react.svg)](https://badge.fury.io/js/lazy-react) [![Code Climate](https://codeclimate.com/github/jonathanobino/react-lazy/badges/gpa.svg)](https://codeclimate.com/github/jonathanobino/react-lazy) [![Issue Count](https://codeclimate.com/github/jonathanobino/react-lazy/badges/issue_count.svg)](https://codeclimate.com/github/jonathanobino/react-lazy)[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 
 Utility components to lazy load images, images-as-background and iframes using only requestAnimationFrame to handle scroll (both vertical and orizzontal) and window resize.
 
