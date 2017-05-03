@@ -5,7 +5,7 @@ module.exports = {
   entry: './demo/demo.js',
   output: {
     path: path.join(__dirname),
-    filename: './demo/index.min.js'
+    filename: './demo/index.js'
   },
   plugins: [
     new webpack.DefinePlugin({
