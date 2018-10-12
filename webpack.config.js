@@ -1,7 +1,9 @@
 var path = require('path')
 var webpack = require('webpack')
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
+  mode:"production",
   entry: './src/index.js',
   devtool: 'source-map',
   output: {
@@ -10,6 +12,40 @@ module.exports = {
     path: path.join(__dirname),
     filename: './dist/index.js'
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true,
+        uglifyOptions: {
+          compress: {
+            inline: false
+          },
+          output: {
+            comments: false
+          }
+        }
+      })
+    ],
+    runtimeChunk: false,
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor_app',
+          chunks: 'all',
+          minChunks: 2
+        }
+      }
+    }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      },
+      __DEVELOPMENT__: false
+    })],
   externals: [
     {
       react: {
@@ -27,15 +63,6 @@ module.exports = {
         amd: 'react-dom'
       }
     }
-  ],
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      },
-      __DEVELOPMENT__: false
-    }),
-    new webpack.optimize.UglifyJsPlugin({ comments: false })
   ],
   module: {
     rules: [
