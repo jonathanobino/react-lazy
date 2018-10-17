@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  mode:"production",
+  mode:'production',
   entry: './src/index.js',
   devtool: 'source-map',
   output: {

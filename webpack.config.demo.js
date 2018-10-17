@@ -1,8 +1,7 @@
 var path = require('path')
-var webpack = require('webpack')
 
 module.exports = {
-  mode:"production",
+  mode:'production',
   entry: './demo/demo.js',
   output: {
     path: path.join(__dirname),
