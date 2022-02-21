@@ -62,7 +62,7 @@ CheckIfRender.addElement = function ({ element, props, makeItVisible }) {
     makeItVisible,
   })
   //check if has already been started the rAF cycle
-  if (typeof CheckIfRender.isListenerAttached !== 'function') {
+  if (typeof CheckIfRender.isListenerAttached === 'boolean') {
     CheckIfRender.isListenerAttached = window.requestAnimationFrame(
       CheckIfRender.eventHandler
     )
@@ -70,28 +70,21 @@ CheckIfRender.addElement = function ({ element, props, makeItVisible }) {
 }
 
 CheckIfRender.eventHandler = function () {
-  //if there is no more element to lazy load just remove the listeners/rAF
+  //if there is no more element to lazy load remove the listener/rAF
   if (CheckIfRender.elements.length === 0) {
     CheckIfRender.removeScrollHandler()
   } else {
-    //save every index of elements that has been loaded
-    let savedIndexs = []
-    for (let i = 0; i < CheckIfRender.elements.length; i++) {
-      if (CheckIfRender.isInViewPort(CheckIfRender.elements[i])) {
-        savedIndexs.push(i)
-        //make the element visible
-        CheckIfRender.elements[i].makeItVisible()
+    CheckIfRender.elements.forEach((elem, i) => {
+      // if element is in viewPort make it visible
+      if (CheckIfRender.isInViewPort(elem)) {
+        elem.makeItVisible()
+        // remove element from the list of elements to lazy load
+        CheckIfRender.removeElementFromList(elem)
+      } else {
+        // if the element is not shown update his position
+        CheckIfRender.elements[i] = CheckIfRender.calculateNewPosition(elem)
       }
-    }
-    //remove elements that has already been loaded from the list of the elements
-    if (savedIndexs.length > 0)
-      CheckIfRender.elements = CheckIfRender.elements.filter(
-        (elem, index) => !savedIndexs.includes(index)
-      )
-    //update the coordinates of the elements
-    CheckIfRender.elements = CheckIfRender.elements.map((elem) =>
-      CheckIfRender.calculateNewPosition(elem)
-    )
+    })
     CheckIfRender.isListenerAttached = window.requestAnimationFrame(
       CheckIfRender.eventHandler
     )
