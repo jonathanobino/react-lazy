@@ -15,14 +15,14 @@ export default class LazyFrame extends CheckIfRender {
         allowTransparency={this.props.allowTransparency}
         allowFullScreen={this.props.allowFullScreen}
         style={this.style}
-        ref={node => (this.domNode = node)}
+        ref={(node) => (this.domNode = node)}
       />
     )
   }
   componentWillMount() {
     this.style = {
       minWidth: '100%',
-      ...this.props.style
+      ...this.props.style,
     }
   }
 }
@@ -32,5 +32,5 @@ LazyFrame.defaultProps = {
   scrolling: 'no',
   frameBorder: 'no',
   allowTransparency: 'true',
-  allowFullScreen: 'true'
+  allowFullScreen: 'true',
 }

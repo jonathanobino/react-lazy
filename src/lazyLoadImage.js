@@ -12,7 +12,7 @@ export default class LazyImage extends CheckIfRender {
         alt={this.props.alt}
         style={this.style}
         className={this.props.className}
-        ref={node => (this.domNode = node)}
+        ref={(node) => (this.domNode = node)}
       />
     )
   }
@@ -21,7 +21,7 @@ export default class LazyImage extends CheckIfRender {
       this.style = {
         minHeight: '300px',
         minWidth: '300px',
-        ...this.props.style
+        ...this.props.style,
       }
     }
   }
@@ -30,5 +30,5 @@ export default class LazyImage extends CheckIfRender {
 LazyImage.defaultProps = {
   style: {},
   className: '',
-  preserveAspect: true
+  preserveAspect: true,
 }

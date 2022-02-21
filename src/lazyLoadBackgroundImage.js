@@ -1,35 +1,27 @@
-import React from 'react' // eslint-disable-line no-unused-vars
-import CheckIfRender from './baseClass'
+import React ,{useState, useEffect, useRef} from 'react' // eslint-disable-line no-unused-vars
+import useIsInViewPort from './baseClass'
 
-export default class LazyBackgroundImage extends CheckIfRender {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <div
-        className={this.props.className}
-        style={this.style}
-        ref={node => (this.domNode = node)}
-      />
-    )
-  }
-  componentWillMount() {
-    this.style = {
-      backgroundImage: `url(${this.state.link})`,
-      ...this.props.style
-    }
-  }
+export default function LazyBackgroundImage(props) {
 
-  componentWillUpdate(nextProps, nextState) {
-    this.style = {
-      ...this.style,
-      backgroundImage: `url(${nextState.link})`
-    }
-  }
-}
+  const ref = useRef();
+  let isViewable = useIsInViewPort(ref, props);
+  const [style,setStyle] = useState({
+    backgroundImage: `url(${isViewable.link})`,
+    ...props.style,
+  })
 
-LazyBackgroundImage.defaultProps = {
-  className: '',
-  style: {}
+  useEffect(()=>{
+    setStyle({
+      backgroundImage: `url(${isViewable.link})`,
+      ...props.style,
+    })
+  },[isViewable])
+
+  return (
+    <div
+      className={props.className}
+      style={style}
+      ref={ref}
+    />
+  )
 }

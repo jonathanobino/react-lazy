@@ -7,7 +7,7 @@ class CheckIfRender extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      link: ''
+      link: '',
     }
   }
   listener() {

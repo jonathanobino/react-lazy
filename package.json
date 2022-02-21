@@ -10,7 +10,8 @@
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
     "prettify": "prettier --write  --single-quote --no-semi ./src/*.js",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "jest"
   },
   "lint-staged": {
     "src/*.js": [
@@ -33,23 +34,25 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "@types/jest": "^27.4.0",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "eslint": "^7.10.0",
     "eslint-plugin-react": "^7.21.3",
     "husky": "^4.3.0",
+    "jest": "^27.5.1",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "peerDependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
