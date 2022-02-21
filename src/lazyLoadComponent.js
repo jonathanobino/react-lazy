@@ -1,32 +1,24 @@
-import React from 'react' // eslint-disable-line no-unused-vars
-import CheckIfRender from './baseClass'
+import React, { useRef } from 'react' // eslint-disable-line no-unused-vars
+import useIsInViewPort from './baseClass'
 
-export default class LazyComponent extends CheckIfRender {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    let toRender = this.state.visible ? this.props.children : <div />
+export default function LazyComponent(props) {
+  const ref = useRef()
+  let isViewable = useIsInViewPort(ref, props)
 
-    return (
-      <div
-        style={this.style}
-        className={this.props.className}
-        ref={(node) => (this.domNode = node)}
-      >
-        {toRender}
-      </div>
-    )
-  }
+  const placeHolder = (
+    <div
+      style={
+        props.style
+          ? props.style
+          : {
+              heigt: '300px',
+              width: '300px',
+            }
+      }
+    />
+  )
 
-  componentWillMount() {
-    this.style = Object.assign({}, this.props.style)
-    if (!this.state.link && !this.props.className && !this.style.height)
-      this.style.height = '300px'
-  }
-}
-
-LazyComponent.defaultProps = {
-  style: {},
-  className: '',
+  return (
+    <div ref={ref}>{isViewable.visible ? props.children : placeHolder}</div>
+  )
 }

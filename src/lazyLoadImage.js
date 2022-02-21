@@ -1,34 +1,17 @@
-import React from 'react' // eslint-disable-line no-unused-vars
-import CheckIfRender from './baseClass'
+import React, { useRef } from 'react' // eslint-disable-line no-unused-vars
+import useIsInViewPort from './baseClass'
 
-export default class LazyImage extends CheckIfRender {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <img
-        src={this.state.link}
-        alt={this.props.alt}
-        style={this.style}
-        className={this.props.className}
-        ref={(node) => (this.domNode = node)}
-      />
-    )
-  }
-  componentWillMount() {
-    if (this.props.className === '' && this.props.preserveAspect === false) {
-      this.style = {
-        minHeight: '300px',
-        minWidth: '300px',
-        ...this.props.style,
-      }
-    }
-  }
-}
+export default function LazyImage(props) {
+  const ref = useRef()
+  const isViewable = useIsInViewPort(ref, props)
 
-LazyImage.defaultProps = {
-  style: {},
-  className: '',
-  preserveAspect: true,
+  return (
+    <img
+      src={isViewable.link}
+      alt={props.alt}
+      style={props.style}
+      className={props.className}
+      ref={ref}
+    />
+  )
 }

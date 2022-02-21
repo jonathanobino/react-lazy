@@ -80,7 +80,7 @@ CheckIfRender.eventHandler = function () {
       if (CheckIfRender.isInViewPort(CheckIfRender.elements[i])) {
         savedIndexs.push(i)
         //make the element visible
-        CheckIfRender.elements[i].makeItVisible() // hope this works
+        CheckIfRender.elements[i].makeItVisible()
       }
     }
     //remove elements that has already been loaded from the list of the elements
