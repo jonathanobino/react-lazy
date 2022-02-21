@@ -6,7 +6,7 @@ export default function useRenderIfInViewPort(element, props) {
     visible: false,
   })
 
-  function makeItVisible () {
+  function makeItVisible() {
     setState({
       visible: true,
       link: props.link,
@@ -14,17 +14,19 @@ export default function useRenderIfInViewPort(element, props) {
   }
 
   useEffect(() => {
-    if(element.current !== undefined)
+    if (element.current !== undefined)
       CheckIfRender.addElement({
         element: element.current,
         props,
-        makeItVisible})
-    return () => CheckIfRender.removeElementFromList({
-      element:element.current,
-      props,
-      makeItVisible
-    })
-  },[])
+        makeItVisible,
+      })
+    return () =>
+      CheckIfRender.removeElementFromList({
+        element: element.current,
+        props,
+        makeItVisible,
+      })
+  }, [])
 
   return state
 }
@@ -38,7 +40,6 @@ CheckIfRender.isInViewPort = ({ offset, top, left }) =>
   window.scrollX + window.innerWidth + offset > left
 
 CheckIfRender.calculateNewPosition = (elem) => {
-
   const reference = elem.element
   const { top, left, right } = reference.getBoundingClientRect()
   return {
@@ -47,10 +48,9 @@ CheckIfRender.calculateNewPosition = (elem) => {
     left,
     right,
   }
-
 }
 
-CheckIfRender.addElement = function ({element, props, makeItVisible}) {
+CheckIfRender.addElement = function ({ element, props, makeItVisible }) {
   //the distance from the pixel 0,0 and the top of the element
   const { top, left, right } = element.getBoundingClientRect()
   CheckIfRender.elements.push({
@@ -59,7 +59,7 @@ CheckIfRender.addElement = function ({element, props, makeItVisible}) {
     left,
     right,
     offset: props.offset || 100,
-    makeItVisible
+    makeItVisible,
   })
   //check if has already been started the rAF cycle
   if (typeof CheckIfRender.isListenerAttached !== 'function') {
@@ -68,7 +68,6 @@ CheckIfRender.addElement = function ({element, props, makeItVisible}) {
     )
   }
 }
-
 
 CheckIfRender.eventHandler = function () {
   //if there is no more element to lazy load just remove the listeners/rAF
@@ -98,7 +97,6 @@ CheckIfRender.eventHandler = function () {
     )
   }
 }
-
 
 CheckIfRender.removeScrollHandler = function () {
   window.cancelAnimationFrame(CheckIfRender.isListenerAttached)
