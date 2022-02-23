@@ -7,9 +7,9 @@ Utility components to lazy load images, images-as-background and iframes using o
 
 ## Install
 
-`npm install --save lazy-react`  
+`npm install --save lazy-react`
 
-Also available as umd on [unpkg](https://unpkg.com/lazy-react) 
+Also available as umd on [unpkg](https://unpkg.com/lazy-react)
 
 `<script src="https://unpkg.com/lazy-react"></script>`
 
@@ -19,11 +19,12 @@ You can see a demo of those packages in my [personal site](http://jonathanobino.
 
 ## Usage
 
-The package exports 3 components:
+The package exports 4 components:
 
 - LazyBackgroundImage
 - LazyImage
 - LazyFrame
+- LazyComponent
 
 Every component accepts **offeset** as a prop, with 100px as fallback.
 
@@ -45,6 +46,17 @@ Name | Type | Description | Required | Default
 ---|---| ---| ---| ---|
 className  | String | html class attribute |  | empty string
 style  | Object | html style attribute |  | {} |
+
+This component is used to have a div placeholder before loading the component.
+
+Usage:
+```javascript
+
+<LazyComponent>
+	<ComponentToLoadWhenInViewport>
+</LazyComponent>
+
+```
 
 ### LazyImage
 
@@ -79,11 +91,12 @@ style  | Object | html style attribute |  | {width:'100%'}
 
 ```javascript
 //with es6
-import {LazyBackgroundImage, LazyImage, LazyFrame} from 'lazy-react'
+import {LazyBackgroundImage, LazyImage, LazyFrame, LazyComponent} from 'lazy-react'
 //with es5
 var LazyBackgroundImage = require('lazy-react').LazyBackgroundImage
 var LazyImage = require('lazy-react').LazyImage
 var LazyFrame = require('lazy-react').LazyFrame
+var LazyComponent = require('lazy-react').LazyComponent
 
 class Example extends React.Component {
 	constructor(props) {
@@ -91,18 +104,21 @@ class Example extends React.Component {
 	}
 	render() {
 		return <div>
-			<LazyBackgroundImage 
-				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
+			<LazyBackgroundImage
+				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'}
 				className="fill"
 			/>
-			<LazyImage 
-				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'} 
+			<LazyImage
+				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'}
 				offset={100}
 			/>
-			<LazyFrame 
-				link={'http://jonathanobino.xyz'} 
+			<LazyFrame
+				link={'http://jonathanobino.xyz'}
 				scrolling={true}
 			/>
+			<LazyComponent>
+				<ComponentToLoadWhenInViewport>
+			</LazyComponent>
 		</div>
 	}
 }
