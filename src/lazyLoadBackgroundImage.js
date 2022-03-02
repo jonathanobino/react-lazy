@@ -17,7 +17,7 @@ export default function LazyBackgroundImage(props) {
   }, [isViewable])
 
   return (
-    <div className={props.className} style={style} ref={ref} >
+    <div className={props.className} style={style} ref={ref}>
       {props.children}
     </div>
   )
