@@ -16,12 +16,14 @@ export default function useRenderIfInViewPort(element, props) {
   useEffect(() => {
     if (element.current !== undefined)
       CheckIfRender.addElement({
+        // add the element to the array of elements that are waiting to be lazy loaded
         element: element.current,
         props,
         makeItVisible,
       })
     return () =>
       CheckIfRender.removeElementFromList({
+        // if the element is unloaded remove the element from the list of elements that needs to be lazy loader
         element: element.current,
         props,
         makeItVisible,
@@ -31,33 +33,34 @@ export default function useRenderIfInViewPort(element, props) {
   return state
 }
 
+// array with all the elements that are waiting to be shown in the viewport
 const CheckIfRender = {
   elements: [],
 }
 
+// top: the position of the element in relation with the top of the browser
+// left: the position of the element in relation with the left of the browser
+// offset: the desired offset of the element in relation of the viewport
 CheckIfRender.isInViewPort = ({ offset, top, left }) =>
-  window.scrollY + window.innerHeight + offset > top &&
-  window.scrollX + window.innerWidth + offset > left
+  top < window.innerHeight + offset && left < window.innerWidth + offset
 
 CheckIfRender.calculateNewPosition = (elem) => {
   const reference = elem.element
-  const { top, left, right } = reference.getBoundingClientRect()
+  const { top, left } = reference.getBoundingClientRect()
   return {
     ...elem,
     top,
     left,
-    right,
   }
 }
 
 CheckIfRender.addElement = function ({ element, props, makeItVisible }) {
   //the distance from the pixel 0,0 and the top of the element
-  const { top, left, right } = element.getBoundingClientRect()
+  const { top, left } = element.getBoundingClientRect()
   CheckIfRender.elements.push({
     element,
     top,
     left,
-    right,
     offset: props.offset || 100,
     makeItVisible,
   })
@@ -93,6 +96,7 @@ CheckIfRender.eventHandler = function () {
 
 CheckIfRender.removeScrollHandler = function () {
   window.cancelAnimationFrame(CheckIfRender.isListenerAttached)
+  CheckIfRender.isListenerAttached = false
 }
 
 //When an element is unloaded remove it from the list of elements that are waiting to be lazy-loaded
