@@ -4,7 +4,6 @@ var webpack = require('webpack')
 module.exports = {
   mode:'production',
   entry: './src/index.js',
-  devtool: 'source-map',
   output: {
     library: 'LazyReact',
     libraryTarget: 'umd',
