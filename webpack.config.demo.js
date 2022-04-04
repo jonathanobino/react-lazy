@@ -1,7 +1,7 @@
 var path = require('path')
 
 module.exports = {
-  mode:'development',
+  mode:'production',
   entry: './demo/demo.js',
   output: {
     path: path.join(__dirname),
@@ -11,7 +11,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        use: 'ts-loader',
         exclude: /node_modules/
       }
     ]

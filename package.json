@@ -9,7 +9,7 @@
     "build": "npm run build:release && npm run build:demo",
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
-    "prettify": "prettier --write  --single-quote --no-semi ./src/*.js",
+    "format": "prettier --write  --single-quote --no-semi ./src/*.tsx",
     "precommit": "lint-staged",
     "test": "jest"
   },
@@ -30,20 +30,19 @@
     "url": "https://github.com/jonathanobino/react-lazy"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
-    "@types/jest": "^27.4.0",
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "@testing-library/react": "^12.1.4",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.40",
+    "@types/react-dom": "^17.0.13",
     "eslint": "^7.10.0",
     "eslint-plugin-react": "^7.21.3",
     "husky": "^4.3.0",
     "jest": "^27.5.1",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
+    "ts-loader": "^9.2.7",
+    "typescript": "^4.6.2",
     "webpack": "^5.66.0",
     "webpack-cli": "^4.9.1"
   },
@@ -52,7 +51,6 @@
     "react-dom": "^17.0.2"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
 }

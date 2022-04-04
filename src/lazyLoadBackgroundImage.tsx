@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react' // eslint-disable-line no-unused-vars
-import useIsInViewPort from './baseClass'
+import useIsInViewPort from './index'
 
-export default function LazyBackgroundImage(props) {
-  const ref = useRef()
-  let isViewable = useIsInViewPort(ref, props)
+export default function LazyBackgroundImage(props: any) {
+  const ref = useRef<HTMLDivElement>(null)
+  let [link, isViewable] = useIsInViewPort(ref, props)
+
   const [style, setStyle] = useState({
-    backgroundImage: `url(${isViewable.link})`,
+    backgroundImage: `url(${link})`,
     ...props.style,
   })
 
   useEffect(() => {
     setStyle({
-      backgroundImage: `url(${isViewable.link})`,
+      backgroundImage: `url(${link})`,
       ...props.style,
     })
-  }, [isViewable])
+  }, [link, isViewable])
 
   return (
     <div className={props.className} style={style} ref={ref}>

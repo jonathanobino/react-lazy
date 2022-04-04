@@ -1,20 +1,20 @@
 import React, { useRef } from 'react' // eslint-disable-line no-unused-vars
-import useIsInViewPort from './baseClass'
+import useIsInViewPort from './index'
 
-export default function LazyFrame(props) {
-  const ref = useRef()
-  let isViewable = useIsInViewPort(ref, props)
+export default function LazyFrame(props: any) {
+  const ref = useRef<HTMLIFrameElement>(null)
+  let [link] = useIsInViewPort(ref, props)
 
   return (
     <iframe
       height={props.height || '500'}
       scrolling={props.scrolling || 'no'}
-      src={isViewable.link}
+      src={link}
       frameBorder={props.frameBorder || 'no'}
-      allowtransparency={props.allowTransparency || 'true'}
       allowFullScreen={props.allowFullScreen || true}
       style={props.style || {}}
       ref={ref}
+      {...props}
     />
   )
 }
