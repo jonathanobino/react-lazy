@@ -1,12 +1,15 @@
-import React, { useRef } from 'react' // eslint-disable-line no-unused-vars
+import React from 'react' // eslint-disable-line no-unused-vars
 import useIsInViewPort from './index'
 
 export default function LazyImage(props: any) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [link, isViewable] = useIsInViewPort(ref, props)
+  const [setRef, link] = useIsInViewPort(props)
 
   return (
-    <div ref={ref}>
+    <div
+      ref={(node) => {
+        setRef(node)
+      }}
+    >
       <img
         src={link}
         alt={props.alt}

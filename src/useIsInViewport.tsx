@@ -1,45 +1,50 @@
-import React, { useState, useEffect, useMemo, RefObject } from 'react' // eslint-disable-line no-unused-vars
+import React, { useState, useEffect, useMemo, useCallback } from 'react' // eslint-disable-line no-unused-vars
 
 interface InstanceElement {
   makeItVisible: () => void
-  element: RefObject<HTMLElement>
+  element: HTMLElement | null
   offset: number
 }
 
-export default function useRenderIfInViewPort(
-  element: RefObject<HTMLElement>,
-  props: { link: string; offset: number }
-): [string, boolean] {
+export default function useRenderIfInViewPort(props: {
+  link: string
+  offset: number
+}): [Function, string, boolean] {
   const [link, setLink] = useState('')
   const [visible, setVisible] = useState(false)
+
+  let [ref, setRef] = useState(null)
+
+  const thisInstance = useMemo(() => {
+    return {
+      element: ref,
+      makeItVisible,
+      offset: props.offset || 100,
+    }
+  }, [ref, props])
+
+  const getRef = useCallback((node) => {
+    if (node !== null) setRef(node)
+  }, [])
 
   function makeItVisible() {
     setLink(() => props.link)
     setVisible(() => true)
   }
 
-  const thisInstance = useMemo(() => {
-    return {
-      element,
-      makeItVisible,
-      offset: props.offset || 100,
-    }
-  }, [element, props])
-
   useEffect(() => {
-    if (element !== undefined)
+    if (ref !== null)
       // add the element to the array of elements that are waiting to be lazy loaded
       CheckIfRender.addElement(thisInstance)
     return () =>
       // if the element is unloaded remove the element from the list of elements that needs to be lazy loader
       CheckIfRender.removeElementFromList(thisInstance)
-  }, [])
+  }, [ref])
 
-  return [link, visible]
+  return [getRef, link, visible]
 }
 
 // array with all the elements that are waiting to be shown in the viewport
-
 let elements: InstanceElement[] = []
 
 const CheckIfRender = {
@@ -57,10 +62,11 @@ const CheckIfRender = {
   }) => top < window.innerHeight + offset && left < window.innerWidth + offset,
 
   calculateNewPosition: (elem: InstanceElement) => {
-    const { top, left } = elem.element.current?.getBoundingClientRect() || {
+    const { top, left } = elem.element?.getBoundingClientRect() || {
       top: 0,
       left: 0,
     }
+
     return {
       ...elem,
       top,

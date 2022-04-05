@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import useIsInViewport from './index'
 
-const LazyComponent = function (props: any) {
-  let ref = useRef<HTMLDivElement>(null)
-  const [, isVisible] = useIsInViewport(ref, props)
+export default function LazyComponent(props: any) {
+  const [setRef, link, isVisible] = useIsInViewport(props)
 
   if (!isVisible)
     return (
       <div
-        ref={ref}
+        ref={(node) => {
+          setRef(node)
+        }}
         style={{
           height: '300px',
           width: '300px',
@@ -19,5 +20,3 @@ const LazyComponent = function (props: any) {
 
   return <div>{props.children}</div>
 }
-
-export default LazyComponent

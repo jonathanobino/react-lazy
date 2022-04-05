@@ -1,7 +1,7 @@
 var path = require('path')
 
 module.exports = {
-  mode:'production',
+  mode:'development',
   entry: './demo/demo.js',
   output: {
     path: path.join(__dirname),
