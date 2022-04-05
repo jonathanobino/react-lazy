@@ -1,7 +1,6 @@
 # lazy-react
 
-[![npm version](https://badge.fury.io/js/lazy-react.svg)](https://badge.fury.io/js/lazy-react) [![Issue Count](https://codeclimate.com/github/jonathanobino/react-lazy/badges/issue_count.svg)](https://codeclimate.com/github/jonathanobino/react-lazy) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![dependecies](https://david-dm.org/jonathanobino/react-lazy.svg)](https://david-dm.org)
-
+[![npm version](https://badge.fury.io/js/lazy-react.svg)](https://badge.fury.io/js/lazy-react) [![Issue Count](https://codeclimate.com/github/jonathanobino/react-lazy/badges/issue_count.svg)](https://codeclimate.com/github/jonathanobino/react-lazy) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 Utility components to lazy load images, images-as-background and iframes using only requestAnimationFrame to handle scroll (both vertical and orizzontal) and window resize.
 
@@ -123,6 +122,43 @@ class Example extends React.Component {
 	}
 }
 ```
+
+## Hook
+
+Since version 3.x there is an hook available named 'useIsInViewport' that exposes 3 elements:
+
+- setRef: used to set the ref of the dom that has to be in the viewport
+- link: the passed link. It's equal to '' until the element is in the specified viewport
+- isVisible: it's false until the element is in the specified viewport
+
+
+Usage
+
+```javascript
+
+import useIsInViewport from 'lazy-react'
+
+function Example(props) {
+	const [setRef, link, isVisible] = useIsInViewport(props)
+
+	if(!isVisible){
+		return <Placeholder />
+	}
+
+	return <div ref={(node)=>{
+		setRef(node)
+	}}>
+		<Content/>
+	</div>
+
+}
+
+```
+
+The required props that have to be passed to the hooks are:
+
+- link: string
+- offset: number
 
 ## Contributing
 
