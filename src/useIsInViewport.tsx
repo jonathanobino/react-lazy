@@ -28,7 +28,8 @@ export default function useRenderIfInViewPort(props: {
   }, [])
 
   function makeItVisible() {
-    setLink(() => props.link)
+    if(props.link)
+      setLink(() => props.link)
     setVisible(() => true)
   }
 
