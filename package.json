@@ -11,7 +11,7 @@
     "precommit": "lint-staged",
     "test": "jest",
     "build": "parcel build",
-    "serve": "parcel serve ./demo/index.html"
+    "serve": "parcel serve ./src/demo/index.html --dist-dir ./demo"
   },
   "targets": {
     "main": {
