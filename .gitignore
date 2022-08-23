@@ -73,4 +73,4 @@ coverage
 node_modules
 
 .parcel-cache
-./demo
+./demo/
