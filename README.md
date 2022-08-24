@@ -52,7 +52,7 @@ Usage:
 ```javascript
 
 <LazyComponent>
-	<ComponentToLoadWhenInViewport>
+  <ComponentToLoadWhenInViewport>
 </LazyComponent>
 
 ```
@@ -98,28 +98,28 @@ var LazyFrame = require('lazy-react').LazyFrame
 var LazyComponent = require('lazy-react').LazyComponent
 
 class Example extends React.Component {
-	constructor(props) {
-		super(props)
-	}
-	render() {
-		return <div>
-			<LazyBackgroundImage
-				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'}
-				className="fill"
-			/>
-			<LazyImage
-				link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'}
-				offset={100}
-			/>
-			<LazyFrame
-				link={'http://jonathanobino.xyz'}
-				scrolling={true}
-			/>
-			<LazyComponent>
-				<ComponentToLoadWhenInViewport>
-			</LazyComponent>
-		</div>
-	}
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return <div>
+      <LazyBackgroundImage
+        link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'}
+        className="fill"
+      />
+      <LazyImage
+        link={'https://images.unsplash.com/photo-1462834026679-7c03bf571a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6e160dc1e65511df7bf1c461f8a93c82'}
+        offset={100}
+      />
+      <LazyFrame
+        link={'http://jonathanobino.xyz'}
+        scrolling={true}
+      />
+      <LazyComponent>
+        <ComponentToLoadWhenInViewport>
+      </LazyComponent>
+    </div>
+  }
 }
 ```
 
@@ -139,17 +139,17 @@ Usage
 import useIsInViewport from 'lazy-react'
 
 function Example(props) {
-	const [setRef, link, isVisible] = useIsInViewport(props)
+  const [setRef, link, isVisible] = useIsInViewport(props)
 
-	if(!isVisible){
-		return <Placeholder />
-	}
+  if(!isVisible){
+    return <Placeholder />
+  }
 
-	return <div ref={(node)=>{
-		setRef(node)
-	}}>
-		<Content/>
-	</div>
+  return <div ref={(node)=>{
+    setRef(node)
+  }}>
+    <Content/>
+  </div>
 
 }
 
