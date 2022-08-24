@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react' // eslint-disable-line no-unused-vars
+import { useState, useEffect, useMemo, useCallback } from 'react' // eslint-disable-line no-unused-vars
 
 interface InstanceElement {
   makeItVisible: () => void
@@ -13,7 +13,7 @@ export default function useRenderIfInViewPort(props: {
   const [link, setLink] = useState('')
   const [visible, setVisible] = useState(false)
 
-  let [ref, setRef] = useState(null)
+  const [ref, setRef] = useState(null)
 
   const thisInstance = useMemo(() => {
     return {
@@ -88,7 +88,7 @@ const CheckIfRender = {
     if (elements.length === 0) {
       CheckIfRender.removeScrollHandler()
     } else {
-      elements.forEach((elem, i) => {
+      elements.forEach((elem) => {
         const haveToShow = CheckIfRender.isInViewPort(
           CheckIfRender.calculateNewPosition(elem)
         )

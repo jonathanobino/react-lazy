@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react' // eslint-disable-line no-unu
 import useIsInViewPort from './index'
 
 export default function LazyBackgroundImage(props: any) {
-  let [setRef, link, isViewable] = useIsInViewPort(props)
+  const [setRef, link, isViewable] = useIsInViewPort(props)
 
   const [style, setStyle] = useState({
     backgroundImage: `url(${link})`,

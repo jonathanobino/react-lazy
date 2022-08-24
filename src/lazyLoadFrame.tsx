@@ -2,7 +2,7 @@ import React from 'react' // eslint-disable-line no-unused-vars
 import useIsInViewPort from './index'
 
 export default function LazyFrame(props: any) {
-  let [setRef, link] = useIsInViewPort(props)
+  const [setRef, link] = useIsInViewPort(props)
 
   return (
     <iframe
