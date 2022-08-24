@@ -3,7 +3,7 @@ engines:
     enabled: false
   eslint:
     enabled: true
-    channel: "eslint-3"
+    channel: "eslint-7"
     config:
       config: .eslintrc
 exclude_paths:
