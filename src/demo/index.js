@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { LazyImage, LazyBackgroundImage, LazyFrame, LazyComponent } from '../../dist'
 
 function Experimental (){
-  return <h1> I'm lazy loaded!</h1>
+  return <h1> I&rsquo;m lazy loaded!</h1>
 }
 
 function Demo() {
