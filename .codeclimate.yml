@@ -8,4 +8,4 @@ engines:
       config: .eslintrc
 exclude_paths:
   - dist/
-  - demo/
+  - src/demo/
