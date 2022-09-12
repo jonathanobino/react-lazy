@@ -90,7 +90,7 @@ style  | Object | html style attribute |  | {width:'100%'}
 
 ```javascript
 //with es6
-import {LazyBackgroundImage, LazyImage, LazyFrame, LazyComponent} from 'lazy-react'
+import { LazyBackgroundImage, LazyImage, LazyFrame, LazyComponent } from 'lazy-react'
 //with es5
 var LazyBackgroundImage = require('lazy-react').LazyBackgroundImage
 var LazyImage = require('lazy-react').LazyImage
@@ -128,7 +128,7 @@ class Example extends React.Component {
 Since version 3.x there is an hook available named 'useIsInViewport' that exposes 3 elements:
 
 - setRef: used to set the ref of the dom that has to be in the viewport
-- link: the passed link. It's equal to '' until the element is in the specified viewport
+- link: the passed link. It's equal to an empty string until the element is in the specified viewport
 - isVisible: it's false until the element is in the specified viewport
 
 
@@ -138,8 +138,8 @@ Usage
 
 import useIsInViewport from 'lazy-react'
 
-function Example(props) {
-  const [setRef, link, isVisible] = useIsInViewport(props)
+function Example({link, offset}) {
+  const [setRef, link, isVisible] = useIsInViewport({link, offset})
 
   if(!isVisible){
     return <Placeholder />
