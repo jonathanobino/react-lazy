@@ -45,7 +45,7 @@ export default function useRenderIfInViewPort(props: {
 }
 
 // array with all the elements that are waiting to be shown in the viewport
-let elements: InstanceElement[] = []
+const elements = new Set<InstanceElement>()
 
 const CheckIfRender = {
   // top: the position of the element in relation with the top of the browser
@@ -75,7 +75,7 @@ const CheckIfRender = {
   },
   addElement: function (element: InstanceElement) {
     //the distance from the pixel 0,0 and the top of the element
-    elements.push(element)
+    elements.add(element)
     //check if has already been started the rAF cycle
     if (CheckIfRender.isListenerAttached === 0) {
       CheckIfRender.isListenerAttached = window.requestAnimationFrame(
@@ -85,7 +85,7 @@ const CheckIfRender = {
   },
   eventHandler: function () {
     //if there is no more element to lazy load remove the listener/rAF
-    if (elements.length === 0) {
+    if (elements.size === 0) {
       CheckIfRender.removeScrollHandler()
     } else {
       elements.forEach((elem) => {
@@ -110,9 +110,7 @@ const CheckIfRender = {
   },
   //When an element is unloaded remove it from the list of elements that are waiting to be lazy-loaded
   removeElementFromList: function (toRemove: InstanceElement) {
-    elements = elements.filter((elem) => elem !== toRemove)
+    elements.delete(toRemove)
   },
   isListenerAttached: 0, // intended as not set
 }
-
-export { CheckIfRender }
