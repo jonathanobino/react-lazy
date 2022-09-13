@@ -1,47 +1,9 @@
-import { useState, useEffect, useMemo, useCallback } from 'react' // eslint-disable-line no-unused-vars
+import { useState, useEffect, useMemo, useCallback } from 'react'
 
 interface InstanceElement {
   makeItVisible: () => void
   element: HTMLElement | null
   offset: number
-}
-
-export default function useRenderIfInViewPort(props: {
-  link: string
-  offset: number
-}): [Function, string, boolean] {
-  const [link, setLink] = useState('')
-  const [visible, setVisible] = useState(false)
-
-  const [ref, setRef] = useState(null)
-
-  const thisInstance = useMemo(() => {
-    return {
-      element: ref,
-      makeItVisible,
-      offset: props.offset || 100,
-    }
-  }, [ref, props])
-
-  const getRef = useCallback((node) => {
-    if (node !== null) setRef(node)
-  }, [])
-
-  function makeItVisible() {
-    if (props.link) setLink(() => props.link)
-    setVisible(() => true)
-  }
-
-  useEffect(() => {
-    if (ref !== null)
-      // add the element to the array of elements that are waiting to be lazy loaded
-      CheckIfRender.addElement(thisInstance)
-    return () =>
-      // if the element is unloaded remove the element from the list of elements that needs to be lazy loader
-      CheckIfRender.removeElementFromList(thisInstance)
-  }, [ref])
-
-  return [getRef, link, visible]
 }
 
 // array with all the elements that are waiting to be shown in the viewport
@@ -113,4 +75,42 @@ const CheckIfRender = {
     elements.delete(toRemove)
   },
   isListenerAttached: 0, // intended as not set
+}
+
+export default function useRenderIfInViewPort(props: {
+  link: string
+  offset: number
+}): [Function, string, boolean] {
+  const [link, setLink] = useState('')
+  const [visible, setVisible] = useState(false)
+
+  const [ref, setRef] = useState(null)
+
+  const thisInstance = useMemo(() => {
+    return {
+      element: ref,
+      makeItVisible,
+      offset: props.offset || 100,
+    }
+  }, [ref, props])
+
+  const getRef = useCallback((node) => {
+    if (node !== null) setRef(node)
+  }, [])
+
+  function makeItVisible() {
+    if (props.link) setLink(() => props.link)
+    setVisible(() => true)
+  }
+
+  useEffect(() => {
+    if (ref !== null)
+      // add the element to the array of elements that are waiting to be lazy loaded
+      CheckIfRender.addElement(thisInstance)
+    return () =>
+      // if the element is unloaded remove the element from the list of elements that needs to be lazy loader
+      CheckIfRender.removeElementFromList(thisInstance)
+  }, [ref])
+
+  return [getRef, link, visible]
 }
