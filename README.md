@@ -157,7 +157,6 @@ function Example({link, offset}) {
 
 The required props that have to be passed to the hooks are:
 
-- link: string
 - offset: number
 
 ## Contributing
