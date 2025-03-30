@@ -162,3 +162,7 @@ The required props that have to be passed to the hooks are:
 ## Contributing
 
 Pull requests for bug fixes, new features, and improvements are welcomed.
+
+## Changelog
+
+ - 3.6.0: upgrade to react 18.3
