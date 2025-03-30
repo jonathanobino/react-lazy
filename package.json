@@ -35,11 +35,10 @@
     "url": "https://github.com/jonathanobino/react-lazy"
   },
   "devDependencies": {
-    "@testing-library/react": "^12.1.4",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",
-    "@types/react": "^17.0.43",
-    "@types/react-dom": "^17.0.14",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "eslint": "^7.32.0",
@@ -53,7 +52,7 @@
     "process": "^0.11.10"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
   }
 }
