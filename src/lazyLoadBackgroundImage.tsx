@@ -1,30 +1,40 @@
-import React, { useState, useEffect } from 'react' // eslint-disable-line no-unused-vars
+import { useState, useEffect, type ReactNode } from 'react'
 import useIsInViewPort from './index'
 
-export default function LazyBackgroundImage(props: any) {
-  const [setRef, link, isViewable] = useIsInViewPort(props)
+interface LazyBackgroundImageProps {
+	link: string
+	offset: number
+	style: object
+	className: string
+	children: ReactNode,
+}
 
-  const [style, setStyle] = useState({
-    backgroundImage: `url(${link})`,
-    ...props.style,
-  })
+export default function LazyBackgroundImage(props: LazyBackgroundImageProps) {
+	const [setRef, link, isViewable] = useIsInViewPort(props)
 
-  useEffect(() => {
-    setStyle({
-      backgroundImage: `url(${link})`,
-      ...props.style,
-    })
-  }, [link, isViewable])
+	const [style, setStyle] = useState({
+		backgroundImage: `url(${link})`,
+		...props.style,
+	})
 
-  return (
-    <div
-      className={props.className}
-      style={style}
-      ref={(node) => {
-        setRef(node)
-      }}
-    >
-      {props.children}
-    </div>
-  )
+	useEffect(() => {
+		isViewable
+			? setStyle({
+					backgroundImage: `url(${link})`,
+					...props.style,
+				})
+			: null
+	}, [link, isViewable, props.style])
+
+	return (
+		<div
+			className={props.className}
+			style={style}
+			ref={(node) => {
+				setRef(node)
+			}}
+		>
+			{props.children}
+		</div>
+	)
 }

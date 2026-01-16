@@ -1,22 +1,29 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 import useIsInViewport from './index'
 
-export default function LazyComponent(props: any) {
-  const [setRef, link, isVisible] = useIsInViewport(props)
+interface LazyComponentProps {
+  link: string,
+  offset: number,
+  style: object,
+  children: ReactNode
+}
 
-  if (!isVisible)
-    return (
-      <div
-        ref={(node) => {
-          setRef(node)
-        }}
-        style={{
-          height: '300px',
-          width: '300px',
-          ...props.style,
-        }}
-      ></div>
-    )
+export default function LazyComponent(props: LazyComponentProps) {
+	const [setRef, _, isVisible] = useIsInViewport(props)
 
-  return <div>{props.children}</div>
+	if (!isVisible)
+		return (
+			<div
+				ref={(node) => {
+					setRef(node)
+				}}
+				style={{
+					height: '300px',
+					width: '300px',
+					...props.style,
+				}}
+			></div>
+		)
+
+	return <div>{props.children}</div>
 }
