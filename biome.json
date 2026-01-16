@@ -1,0 +1,18 @@
+{
+  "files": {
+      "includes": ["**", "!dist", "!**/dist", "!demo"]
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+       "semicolons": "asNeeded"
+    }
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "off"
+      }
+    }
+  }
+}

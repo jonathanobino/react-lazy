@@ -7,9 +7,8 @@
   "scripts": {
     "start": "parcel serve ./src/demo/index.html --dist-dir ./demo",
     "build": "parcel build",
-    "lint": "eslint src/*",
-    "lint:fix": "eslint --fix src/*",
-    "format": "prettier --write  --single-quote --no-semi ./src/*.tsx",
+    "lint": "biome lint src/*",
+    "format": "biome format --write ./src/*.tsx",
     "precommit": "lint-staged",
     "test": "jest"
   },
@@ -19,8 +18,8 @@
     }
   },
   "lint-staged": {
-    "src/*.js": [
-      "prettier --write --single-quote --no-semi",
+    "src/*.jsx": [
+      "biome format",
       "git add"
     ]
   },
@@ -35,20 +34,14 @@
     "url": "https://github.com/jonathanobino/react-lazy"
   },
   "devDependencies": {
-    "@types/jest": "^27.4.1",
+    "@biomejs/biome": "2.3.11",
     "@types/node": "^17.0.21",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
-    "@typescript-eslint/parser": "^5.35.1",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "^7.30.1",
     "husky": "^4.3.0",
     "jest": "^27.5.1",
     "lint-staged": "^10.4.0",
     "parcel": "^2.7.0",
-    "prettier": "^2.1.2",
     "process": "^0.11.10"
   },
   "peerDependencies": {
