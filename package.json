@@ -1,6 +1,6 @@
 {
   "name": "lazy-react",
-  "version": "3.6.2",
+  "version": "3.6.3",
   "description": "React utility for lazy resource loading and lazy component execution. Engineered with requestAnimationFrame to ensure 60fps scrolling, it minimizes both network payload and CPU overhead by deferring resource fetching and component mounting until the viewport entry.",
   "author": "Jonathan Obino",
   "license": "MIT",
