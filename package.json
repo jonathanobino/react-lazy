@@ -1,9 +1,28 @@
 {
   "name": "lazy-react",
   "version": "3.6.2",
-  "description": "components to lazy load iframes, images and images as backgrounds",
+  "description": "React utility for lazy resource loading and lazy component execution. Engineered with requestAnimationFrame to ensure 60fps scrolling, it minimizes both network payload and CPU overhead by deferring resource fetching and component mounting until the viewport entry.",
+  "author": "Jonathan Obino",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathanobino/react-lazy"
+  },
+  "keywords": [
+    "react",
+    "lazy-loading",
+    "typescript",
+    "javascript",
+    "performance",
+    "react-component",
+    "web-performance",
+    "frontend",
+    "library"
+  ],
   "source": "./src/index.tsx",
   "main": "./dist/index.js",
+  "module": "dist/module.js",
+  "types": "./dist/types.d.ts",
   "scripts": {
     "start": "parcel serve ./src/demo/index.html --dist-dir ./demo",
     "build": "parcel build",
@@ -23,26 +42,19 @@
       "git add"
     ]
   },
-  "keywords": [
-    "react",
-    "lazy-load"
-  ],
-  "author": "Jonathan Obino",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jonathanobino/react-lazy"
-  },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
-    "@types/node": "^17.0.21",
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.0",
+    "@parcel/packager-ts": "^2.16.3",
+    "@parcel/transformer-typescript-types": "^2.9.0",
+    "@types/node": "^25.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "husky": "^4.3.0",
     "jest": "^27.5.1",
     "lint-staged": "^10.4.0",
-    "parcel": "^2.7.0",
-    "process": "^0.11.10"
+    "parcel": "^2.9.0",
+    "process": "^0.11.10",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": "^18.3.0",
