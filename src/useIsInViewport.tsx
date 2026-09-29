@@ -45,25 +45,27 @@ const CheckIfRender = {
 			)
 		}
 	},
+	showElementIfInViewport: (elem: InstanceElement) => {
+		const haveToShow = CheckIfRender.isInViewPort(
+			CheckIfRender.calculateNewPosition(elem),
+		)
+		if (!haveToShow) return
+
+		elem.makeItVisible()
+		// remove element from the list of elements to lazy load
+		CheckIfRender.removeElementFromList(elem)
+	},
 	eventHandler: () => {
 		//if there is no more element to lazy load remove the listener/rAF
 		if (elements.size === 0) {
 			CheckIfRender.removeScrollHandler()
-		} else {
-			elements.forEach((elem) => {
-				const haveToShow = CheckIfRender.isInViewPort(
-					CheckIfRender.calculateNewPosition(elem),
-				)
-				if (haveToShow) {
-					elem.makeItVisible()
-					// remove element from the list of elements to lazy load
-					CheckIfRender.removeElementFromList(elem)
-				}
-			})
-			CheckIfRender.isListenerAttached = window.requestAnimationFrame(
-				CheckIfRender.eventHandler,
-			)
+			return
 		}
+
+		elements.forEach(CheckIfRender.showElementIfInViewport)
+		CheckIfRender.isListenerAttached = window.requestAnimationFrame(
+			CheckIfRender.eventHandler,
+		)
 	},
 
 	removeScrollHandler: () => {
@@ -114,4 +116,3 @@ export default function useRenderIfInViewPort(props: {
 
 	return [getRef, link, visible]
 }
-
