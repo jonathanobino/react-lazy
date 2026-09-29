@@ -45,6 +45,13 @@ const CheckIfRender = {
 			)
 		}
 	},
+	subscribeElement: (instance: InstanceElement) => {
+		if (instance.element !== null) {
+			CheckIfRender.addElement(instance)
+		}
+
+		return () => CheckIfRender.removeElementFromList(instance)
+	},
 	showElementIfInViewport: (elem: InstanceElement) => {
 		const haveToShow = CheckIfRender.isInViewPort(
 			CheckIfRender.calculateNewPosition(elem),
@@ -89,7 +96,7 @@ export default function useRenderIfInViewPort(props: {
 	const [ref, setRef] = useState<HTMLDivElement | null>(null)
 
 	const makeItVisible = useCallback(() => {
-		if (props.link) setLink(() => props.link)
+		setLink((currentLink) => props.link || currentLink)
 		setVisible(() => true)
 	}, [props.link])
 
@@ -102,17 +109,10 @@ export default function useRenderIfInViewPort(props: {
 	}, [ref, props.offset, makeItVisible])
 
 	const getRef = useCallback((node: HTMLDivElement | null) => {
-		if (node !== null) setRef(node)
+		setRef((currentRef) => node ?? currentRef)
 	}, [])
 
-	useEffect(() => {
-		if (ref !== null)
-			// add the element to the array of elements that are waiting to be lazy loaded
-			CheckIfRender.addElement(thisInstance)
-		return () =>
-			// if the element is unloaded remove the element from the list of elements that needs to be lazy loader
-			CheckIfRender.removeElementFromList(thisInstance)
-	}, [ref, thisInstance])
+	useEffect(() => CheckIfRender.subscribeElement(thisInstance), [thisInstance])
 
 	return [getRef, link, visible]
 }
