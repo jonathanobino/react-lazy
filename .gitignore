@@ -74,3 +74,5 @@ node_modules
 
 .parcel-cache
 /demo/
+
+.zed

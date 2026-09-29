@@ -4,7 +4,7 @@ interface LazyFrameProps {
 	height: number
 	link: string
 	offset: number
-	allowFullScreen: boolean,
+	allowFullScreen: boolean
 }
 
 export default function LazyFrame(props: LazyFrameProps) {

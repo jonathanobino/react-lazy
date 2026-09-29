@@ -2,10 +2,10 @@ import type { ReactNode } from 'react'
 import useIsInViewport from './index'
 
 interface LazyComponentProps {
-  link: string,
-  offset: number,
-  style: object,
-  children: ReactNode
+	link: string
+	offset: number
+	style: object
+	children: ReactNode
 }
 
 export default function LazyComponent(props: LazyComponentProps) {

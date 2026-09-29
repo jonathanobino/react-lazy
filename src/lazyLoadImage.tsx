@@ -1,11 +1,11 @@
 import useIsInViewPort from './index'
 
 interface LazyImageProps {
-  link: string,
-  offset: number,
-  alt: string,
-  style: object,
-  className: string,
+	link: string
+	offset: number
+	alt: string
+	style: object
+	className: string
 	title: string
 }
 

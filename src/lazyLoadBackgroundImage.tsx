@@ -6,7 +6,7 @@ interface LazyBackgroundImageProps {
 	offset: number
 	style: object
 	className: string
-	children: ReactNode,
+	children: ReactNode
 }
 
 export default function LazyBackgroundImage(props: LazyBackgroundImageProps) {
