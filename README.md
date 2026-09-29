@@ -163,6 +163,8 @@ The required props that have to be passed to the hooks are:
 
 Pull requests for bug fixes, new features, and improvements are welcomed.
 
+Run `npm test` to execute the Vitest suite, or `npm run test:watch` to rerun tests as files change. Hook tests use React Testing Library and jsdom, with controlled animation frames and element positions.
+
 ## Changelog
 
  - 3.6.0: upgrade to react 18.3

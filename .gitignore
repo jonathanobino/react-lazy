@@ -76,3 +76,4 @@ node_modules
 /demo/
 
 .zed
+.vitest/
