@@ -6,13 +6,12 @@ interface InstanceElement {
 	offset: number
 }
 
-// array with all the elements that are waiting to be shown in the viewport
+// Set of instances waiting to become visible in the viewport.
 const elements = new Set<InstanceElement>()
 
 const CheckIfRender = {
-	// top: the position of the element in relation with the top of the browser
-	// left: the position of the element in relation with the left of the browser
-	// offset: the desired offset of the element in relation of the viewport
+	// top and left: element coordinates relative to the viewport, in pixels.
+	// offset: margin added to the viewport's bottom and right boundaries.
 	isInViewPort: ({
 		offset,
 		top,
@@ -36,9 +35,9 @@ const CheckIfRender = {
 		}
 	},
 	addElement: (element: InstanceElement) => {
-		//the distance from the pixel 0,0 and the top of the element
+		// Register the instance for viewport checks.
 		elements.add(element)
-		//check if has already been started the rAF cycle
+		// Start the animation frame loop if it is not already running.
 		if (CheckIfRender.isListenerAttached === 0) {
 			CheckIfRender.isListenerAttached = window.requestAnimationFrame(
 				CheckIfRender.eventHandler,
@@ -59,11 +58,11 @@ const CheckIfRender = {
 		if (!haveToShow) return
 
 		elem.makeItVisible()
-		// remove element from the list of elements to lazy load
+		// Remove the visible instance from the set of pending instances.
 		CheckIfRender.removeElementFromList(elem)
 	},
 	eventHandler: () => {
-		//if there is no more element to lazy load remove the listener/rAF
+		// Stop the animation frame loop when no pending instances remain.
 		if (elements.size === 0) {
 			CheckIfRender.removeScrollHandler()
 			return
@@ -79,11 +78,11 @@ const CheckIfRender = {
 		window.cancelAnimationFrame(CheckIfRender.isListenerAttached)
 		CheckIfRender.isListenerAttached = 0
 	},
-	//When an element is unloaded remove it from the list of elements that are waiting to be lazy-loaded
+	// Remove an instance after it becomes visible or its subscription ends.
 	removeElementFromList: (toRemove: InstanceElement) => {
 		elements.delete(toRemove)
 	},
-	isListenerAttached: 0, // intended as not set
+	isListenerAttached: 0, // Animation frame ID; 0 means the loop is inactive.
 }
 
 export default function useRenderIfInViewPort(props: {
